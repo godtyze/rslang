@@ -1,0 +1,8 @@
+.main {
+  display: flex;
+  align-items: center;
+  filter: alpha(opacity=40);
+  width: 100%;
+  background-size: cover;
+  flex-grow: 1;
+}
