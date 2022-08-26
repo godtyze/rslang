@@ -1,7 +1,7 @@
 import React from 'react';
 import './footer.css'
 
-const Footer = () => {
+const Footer: React.FC = () => {
     return (
         <footer className='footer'>
             <a href="https://rs.school/" className='footer__logo'></a>

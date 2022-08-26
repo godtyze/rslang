@@ -16,23 +16,7 @@
   background-color: beige;
   padding-right: 50px;
 }
-.button-wrapper {
-  display: flex;
-  padding: 40px 0 0 50px;
 
-}
-.login-button {
-  font-family: cursive;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  height: 30px;
-  width: 190px;
-  border-radius: 10px;
-  background-color: beige;
-  border: 2px solid black;
-  cursor: pointer;
-}
 .games-wrapper {
   display: flex;
   padding: 90px 0 0 0;
@@ -40,6 +24,7 @@
   height: auto;
   flex-direction: column;
 }
+
 .all-games {
   display: flex;
   flex-direction: row;
@@ -47,10 +32,12 @@
   align-items: center;
   justify-content: center;
 }
+
 .game {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  height: 280px;
+  height: 230px;
   width: 180px;
   border-radius: 5px;
   background-size: contain;
@@ -58,7 +45,10 @@
   justify-content: center;
   font-family: cursive;
   font-size: 30px;
+  transition: 0.3s;
+
 }
+
 .game-wrapper {
   cursor: pointer;
   border-radius: 5px;
@@ -67,27 +57,24 @@
   justify-content: center;
   background-color: #9991c9;
   border: 3px solid black;
-  height: 300px;
+  height: 250px;
   width: 200px;
 }
+
 .game-wrapper:hover {
   box-shadow: 5px 5px 5px black;
 
 }
-.game:hover {
+
+.game:hover {  background-color: beige;
+  border: 2px solid white;
+}
+
+.game-wrapper:hover .game {
   background-color: beige;
   border: 2px solid white;
 }
-.glossary {
-  background-image: url("../../assets/png/books.png");
-  background-position: top;
-  background-size: 100px;
-}
-.speaker {
-  background-image: url("../../assets/png/speaker-icon-13.png");
-  background-size: 90px;
-  background-position: top;
-}
+
 .about {
   max-width: 790px;
   width: 100%;
@@ -95,6 +82,7 @@
   font-family: cursive;
   padding-top: 80px;
 }
+
 .profile-logo {
   height: 100px;
   width: 100px;
@@ -105,10 +93,15 @@
   font-family: cursive;
   text-align: center;
   cursor: pointer;
+  background-color: white;
+  border-radius: 50px;
+  transition: 0.3s;
+
 }
+
 .profile-logo:hover {
   color: bisque;
-  border-radius: 50px;
   background-color: bisque;
 }
+
 

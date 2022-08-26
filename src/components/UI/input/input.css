@@ -1,0 +1,16 @@
+.form-input {
+  width: 180px;
+  height: 30px;
+}
+
+input {
+  height: 25px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #fff;
+  text-align: center;
+  font-family: cursive;
+  font-size: 18px;
+  width: 75%;
+}
