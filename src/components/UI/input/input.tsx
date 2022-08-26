@@ -10,8 +10,11 @@ interface inputProps {
 }
 
 const MyInput: React.FC<inputProps> = ({className, type, placeholder, children}) => {
+    const handleSubmit = (e:React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+    }
     return (
-        <input className={className}
+        <input onSubmit={handleSubmit} className={className}
                type={type}
                placeholder={placeholder}>
             {children}

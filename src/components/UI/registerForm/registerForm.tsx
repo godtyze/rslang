@@ -11,13 +11,14 @@ interface formProps {
 
 const RegisterForm: React.FC<formProps> = ({children}) => {
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     }
     return (
         <form
             onSubmit={handleSubmit}
             className='register-form'>
+
             {children}
             <MyInput className='form-input' type='text' placeholder='E-mail'/>
             <MyInput className='form-input' type='text' placeholder='Password'/>
