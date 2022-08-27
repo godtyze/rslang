@@ -2,9 +2,11 @@ import React from 'react';
 import './main.css'
 import Auth from "./auth";
 import Games from "./games";
+import Footer from "../../components/footer/footer";
 
 const Main: React.FC = () => {
     return (
+      <div className='App'>
         <main className='main'>
             <Auth/>
             <div>
@@ -22,7 +24,8 @@ const Main: React.FC = () => {
                 <span>Профиль</span>
             </div>
         </main>
-
+        <Footer/>
+      </div>
     );
 };
 
