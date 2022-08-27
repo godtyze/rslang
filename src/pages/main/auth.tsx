@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import MyButton from "../UI/button/button";
-import RegisterForm from "../UI/registerForm/registerForm";
+import MyButton from "../../components/UI/button/button";
+import RegisterForm from "../../components/UI/registerForm/registerForm";
 import {CSSTransition} from "react-transition-group";
 
 
