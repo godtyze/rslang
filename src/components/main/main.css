@@ -63,16 +63,14 @@
 
 .game-wrapper:hover {
   box-shadow: 5px 5px 5px black;
-
 }
 
-.game:hover {  background-color: beige;
-  border: 2px solid white;
+.game:hover {
+  background-color: beige;
 }
 
 .game-wrapper:hover .game {
   background-color: beige;
-  border: 2px solid white;
 }
 
 .about {
