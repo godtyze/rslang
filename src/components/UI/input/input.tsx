@@ -1,23 +1,24 @@
 import React from 'react';
 
 interface inputProps {
-    children?: React.ReactNode;
+    value: string;
     className: string;
-    onClick?: () => void;
-    onSubmit?: () => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onSubmit?: (e: React.FormEvent<HTMLInputElement>) => void;
     type: string;
     placeholder: string;
 }
 
-const MyInput: React.FC<inputProps> = ({className, type, placeholder, children}) => {
-    const handleSubmit = (e:React.ChangeEvent<HTMLInputElement>) => {
+const MyInput: React.FC<inputProps> = ({className, type, placeholder, onChange}) => {
+    const handleSubmit = (e:React.FormEvent<HTMLInputElement>) => {
         e.preventDefault();
     }
     return (
-        <input onSubmit={handleSubmit} className={className}
+        <input onSubmit={handleSubmit}
+               onChange={onChange}
+               className={className}
                type={type}
                placeholder={placeholder}>
-            {children}
         </input>
     );
 };
