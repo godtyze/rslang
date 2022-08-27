@@ -21,7 +21,7 @@ const RegisterForm: React.FC<formProps> = ({children}) => {
 
             {children}
             <MyInput className='form-input' type='text' placeholder='E-mail'/>
-            <MyInput className='form-input' type='text' placeholder='Password'/>
+            <MyInput className='form-input' type='password' placeholder='Password'/>
             <MyButton className='btn enter-button' visible={true}>
                 Войти
             </MyButton>
