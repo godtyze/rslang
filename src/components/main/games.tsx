@@ -9,21 +9,21 @@ const Games: React.FC = () => {
                     <div className='game'>
                         <img src={require('../../assets/png/books.png')} height='100px'
                              width='100px' alt='glossary'/>
-                        <a>Словарь</a>
+                        <span>Словарь</span>
                     </div>
                 </MyButton>
                 <MyButton className='game-wrapper' visible={true}>
                     <div className='game'>
                         <img src={require('../../assets/png/speaker.png')} height='100px'
                              width='100px' alt='speaker'/>
-                        <a>Аудиовызов</a>
+                        <span>Аудиовызов</span>
                     </div>
                 </MyButton>
                 <MyButton className='game-wrapper' visible={true}>
                     <div className='game'>
                         <img src={require('../../assets/png/sprint.png')} height='100px'
                              width='175px' alt='glossary'/>
-                        <a>Спринт</a>
+                        <span>Спринт</span>
                     </div>
                 </MyButton>
             </div>

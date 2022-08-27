@@ -1,28 +1,34 @@
 import React, {useState} from 'react';
 import MyButton from "../UI/button/button";
 import RegisterForm from "../UI/registerForm/registerForm";
+import {CSSTransition} from "react-transition-group";
 
 
 const Auth: React.FC = () => {
-    const [visible, setVisible] = useState<boolean>(true);
+  const [showButton, setShowButton] = useState<boolean>(true);
+  const [showForm, setShowForm] = useState<boolean>(false);
 
-    const clickHandler = () => {
-        setVisible(!visible);
-    }
-
-    return (
-      <div>
-          {visible
-            ? <MyButton
+  return (
+    <div>
+      {showButton
+        && <MyButton
               className={'btn login-button'}
-              onClick={clickHandler}
-              visible={visible}>
-                Вход / Регистрация
-            </MyButton>
-            : <RegisterForm onClick={clickHandler}/>
-          }
-      </div>
-    );
+              onClick={() => setShowForm(true)}
+              visible={showButton}>
+              Вход / Регистрация
+          </MyButton>}
+      <CSSTransition
+        in={showForm}
+        timeout={300}
+        classNames="register-form"
+        unmountOnExit
+        onEnter={() => setShowButton(false)}
+        onExited={() => setShowButton(true)}
+      >
+        <RegisterForm onClick={() => setShowForm(false)}/>
+      </CSSTransition>
+    </div>
+  );
 };
 
 export default Auth;
