@@ -19,7 +19,7 @@ const Main: React.FC = () => {
             <div className='profile-logo'>
                 <img src={require('../../assets/png/prof.png')} height='100' width='100'
                      alt='profile-pic'/>
-                <a>Профиль</a>
+                <span>Профиль</span>
             </div>
         </main>
 
