@@ -22,6 +22,7 @@
     "noImplicitAny": true
   },
   "include": [
+    "types",
     "src"
   ]
 }
