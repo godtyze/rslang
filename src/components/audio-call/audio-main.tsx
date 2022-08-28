@@ -1,12 +1,12 @@
 import React from 'react';
 import MyButton from "../UI/button/button";
-//import sound from '../../assets/files/01_0001.mp3'
+import sound from '../../assets/files/01_0001.mp3'
 const audioPlayer = new Audio();
 const btnArr = [1, 2, 3, 4, 5, 6];
 
 const AudioMain = () => {
   const audioHandle = () => {
-
+    playAudio(sound);
   }
   return (
       <div className='start-window'>
@@ -15,7 +15,7 @@ const AudioMain = () => {
                 Выберите сложность:
             </span>
         <div className='btn-wrapper'>
-          {btnArr.map(el => <MyButton onClick={audioHandle} className='btn audio' visible={true}>{el}</MyButton>)}
+          {btnArr.map(el => <MyButton key={el} onClick={audioHandle} className='btn audio' visible={true}>{el}</MyButton>)}
         </div>
       </div>
   );
@@ -24,7 +24,7 @@ const AudioMain = () => {
 function playAudio(url: string) {
   audioPlayer.src = url;
   audioPlayer.load();
-  audioPlayer.play().then(r => console.log('success'));
+  audioPlayer.play();
 
 }
 
