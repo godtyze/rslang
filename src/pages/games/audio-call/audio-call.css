@@ -4,7 +4,10 @@
   justify-content: center;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url("../../assets/jpg/audio-bg.jpg");
+  background-image: url("../../../assets/jpg/audio-bg.jpg");
+}
+
+.blur {
   filter: blur(4px);
 }
 
@@ -15,19 +18,21 @@
   box-shadow: 2px 2px black;
   position: absolute;
   top: 35%;
-  left: 40%;
+  left: 35%;
   display: flex;
   height: 300px;
   width: 500px;
   background-color: #ecec2c;
   border-radius: 10px;
 }
+
 .start-window__title {
   padding: 10px 0 10px 0;
   font-family: cursive;
   font-size: 35px;
   color: purple;
 }
+
 .start-window__text {
   padding: 0 15px 0 15px;
   font-family: cursive;
@@ -35,6 +40,7 @@
   color: #c70cc7;
   text-align: justify;
 }
+
 .btn-wrapper {
   padding-top: 20px;
   justify-content: space-between;
@@ -42,14 +48,17 @@
   display: flex;
   flex-direction: row;
 }
+
 .audio {
   font-size: 20px;
   width: 40px;
   height: 40px;
 }
+
 .audio:hover {
   background-color: #ff3e15;
 }
+
 .game-button {
   border: none;
   background: none;
@@ -60,6 +69,49 @@
   font-family: cursive;
   cursor: pointer;
 }
+
 .game-button:hover {
   color: #ff3e15;
+}
+
+.timescale-wrapper {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 100px;
+
+}
+
+.audio-game-btn {
+  background-color: white;
+  border: none;
+  height: 35px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.timescale-wrapper .timescale {
+  width: 100%;
+  height: 25px;
+  background: green;
+  animation: loading 6s ease-in-out forwards;
+}
+
+.time-wrapper {
+  border: 1px solid black;
+  height: 27px;
+}
+
+.timescale-wrapper .time {
+  width: 100%;
+  height: 35px;
+  transform: skew(45deg) translate(15px, 5px);
+}
+
+@keyframes loading {
+  to {
+    width: 0;
+  }
 }
