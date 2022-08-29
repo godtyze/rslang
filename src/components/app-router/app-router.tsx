@@ -10,8 +10,9 @@ const routes = [
   {path: '/glossary', element: <Glossary/>},
   {path: '/audio-call', element: <AudioCall/>},
   {path: '/sprint', element: <Sprint/>},
+  {path: '/rslang', element: <Main/>},
   {path: '*', element: <Main/>}
-]
+];
 
 const AppRouter: React.FC = () => {
   return (

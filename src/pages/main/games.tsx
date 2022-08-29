@@ -1,38 +1,28 @@
 import React from 'react';
-import MyButton from "../../components/UI/button/button";
-import {Link} from "react-router-dom";
+import glossaryImg from '../../assets/png/books.png';
+import audioCallImg from '../../assets/png/speaker.png';
+import sprintImg from '../../assets/png/sprint.png';
+import Game from "./game";
+
+const games = [
+  { path: '/glossary', name: 'Словарь', img: glossaryImg, width: '100px', height: '100px' },
+  { path: '/audio-call', name: 'Аудиовызов', img: audioCallImg, width: '100px', height: '100px' },
+  { path: '/sprint', name: 'Спринт', img: sprintImg, width: '175px', height: '100px' },
+];
 
 const Games: React.FC = () => {
   return (
     <div className='games-wrapper'>
       <div className='all-games'>
-        <Link to='/glossary'>
-          <MyButton className='game-wrapper' visible={true}>
-            <div className='game'>
-              <img src={require('../../assets/png/books.png')} height='100px'
-                   width='100px' alt='glossary'/>
-              <span>Словарь</span>
-            </div>
-          </MyButton>
-        </Link>
-        <Link to='/audio-call'>
-          <MyButton className='game-wrapper' visible={true}>
-            <div className='game'>
-              <img src={require('../../assets/png/speaker.png')} height='100px'
-                   width='100px' alt='speaker'/>
-              <span>Аудиовызов</span>
-            </div>
-          </MyButton>
-        </Link>
-        <Link to='/sprint'>
-          <MyButton className='game-wrapper' visible={true}>
-            <div className='game'>
-              <img src={require('../../assets/png/sprint.png')} height='100px'
-                   width='175px' alt='glossary'/>
-              <span>Спринт</span>
-            </div>
-          </MyButton>
-        </Link>
+        {games.map(game =>
+        <Game
+          key={game.name}
+          img={game.img}
+          path={game.path}
+          name={game.name}
+          width={game.width}
+          height={game.height}
+        />)}
       </div>
     </div>
   );

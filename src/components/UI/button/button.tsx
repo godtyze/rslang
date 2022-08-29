@@ -2,7 +2,7 @@ import React from 'react';
 import './button.css';
 
 interface btnProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className: string;
   onClick?: () => void;
   visible?: boolean;
