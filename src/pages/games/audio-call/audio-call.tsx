@@ -10,7 +10,7 @@ const AudioCall = () => {
         <div className='audio-main'>
         </div>
         <AudioMain/>
-        <Link to='/'><MyButton className={'game-button'} visible={true}>X</MyButton>
+        <Link to='/rslang'><MyButton className={'game-button'} visible={true}>X</MyButton>
         </Link>
       </div>
   );

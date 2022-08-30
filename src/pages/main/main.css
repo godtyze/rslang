@@ -50,15 +50,13 @@
 }
 
 .game-wrapper {
-  cursor: pointer;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #9991c9;
   border: 3px solid black;
-  height: 250px;
-  width: 200px;
+  color:black;
 }
 
 .game-wrapper:hover {
