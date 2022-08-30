@@ -1,0 +1,38 @@
+.pagination {
+  display: flex;
+  max-width: 340px;
+  width: 100%;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.arr-wrapper {
+  display: flex;
+  font-size: 20px;
+  line-height: 23px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 52px;
+  height: 52px;
+  border: 2px solid rgb(241, 205, 179);
+  border-radius: 100px;
+  transition: all ease-in-out 0.2s;
+  background: transparent;
+}
+
+.arr-wrapper:hover {
+  background-color: rgb(253, 220, 196);
+  border-color: rgb(253, 220, 196);
+}
+
+.arr-wrapper.page {
+  pointer-events: none;
+  background-color: rgb(241, 205, 179);
+}
+
+.disabled-btn {
+  color: rgb(205, 205, 205);
+  border-color: rgb(205, 205, 205);
+  pointer-events: none;
+}

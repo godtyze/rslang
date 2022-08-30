@@ -1,21 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {useFetching} from "../../hooks/useFetching";
-import PostService from "../../api/PostService";
+import React from 'react';
 import {Word} from "../../../types/types";
 import WordCard from "../../components/word-card/word-card";
 import './word-list.css';
 
-const WordList = () => {
-  const [words, setWords] = useState<Array<Word>>([]);
-  const [fetchWords, error] = useFetching(async () => {
-    const words = await PostService.getWords(0, 0);
-    setWords(words);
-  });
+type wordListProps = {
+  words: Array<Word>;
+}
 
-  useEffect(() => {
-    (fetchWords as (() => Promise<void>))();
-  }, []);
-
+const WordList: React.FC<wordListProps> = ({words}) => {
   return (
     <div className='word__cards'>
       {words.map(word =>
