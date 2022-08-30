@@ -2,7 +2,7 @@ import React from 'react';
 import glossaryImg from '../../assets/png/books.png';
 import audioCallImg from '../../assets/png/speaker.png';
 import sprintImg from '../../assets/png/sprint.png';
-import Game from "./game";
+import GameLink from "./game-link";
 
 const games = [
   { path: '/glossary', name: 'Словарь', img: glossaryImg, width: '100px', height: '100px' },
@@ -15,7 +15,7 @@ const Games: React.FC = () => {
     <div className='games-wrapper'>
       <div className='all-games'>
         {games.map(game =>
-        <Game
+        <GameLink
           key={game.name}
           img={game.img}
           path={game.path}

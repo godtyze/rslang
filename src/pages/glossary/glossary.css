@@ -1,0 +1,12 @@
+.App.glossary {
+    background: url('../../assets/jpg/glossary-bg.jpg');
+    justify-content: initial;
+    align-items: initial;
+    row-gap: 20px;
+}
+
+.nav .game-wrapper .game {
+    width: 125px;
+    height: 100px;
+    font-size: 17px;
+}

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 type gameProps = Record<'path' | 'name' | 'img' | 'width' | 'height', string>
 
-const Game: React.FC<gameProps> = ({path, name, img, width, height}) => {
+const GameLink: React.FC<gameProps> = ({path, name, img, width, height}) => {
   return (
     <Link to={path} className='game-wrapper'>
       <div className='game'>
@@ -19,4 +19,4 @@ const Game: React.FC<gameProps> = ({path, name, img, width, height}) => {
   );
 };
 
-export default Game;
+export default GameLink;
