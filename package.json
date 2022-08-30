@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@types/react-transition-group": "^4.4.5",
+    "fast-average-color": "^9.1.1",
     "react-transition-group": "^4.4.5"
   }
 }

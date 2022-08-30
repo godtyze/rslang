@@ -4,6 +4,7 @@ import Header from "../../components/header/header";
 import {Link} from "react-router-dom";
 import sprite from '../../assets/svg/sprite.svg';
 import Navigation from "./navigation";
+import WordList from "./word-list";
 
 
 const Glossary: React.FC = () => {
@@ -17,6 +18,7 @@ const Glossary: React.FC = () => {
         </Link>
         <Navigation/>
       </Header>
+      <WordList/>
     </div>
   );
 };
