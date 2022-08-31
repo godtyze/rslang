@@ -9,6 +9,7 @@ import {Word} from "../../../types/types";
 import {useFetching} from "../../hooks/useFetching";
 import PostService from "../../api/PostService";
 import Pagination from "../../components/UI/pagination/pagination";
+import Footer from "../../components/footer/footer";
 
 
 const Glossary: React.FC = () => {
@@ -44,6 +45,7 @@ const Glossary: React.FC = () => {
         onClickFirst={() => setPage(1)}
         onClickLast={() => setPage(30)}
       />
+      <Footer/>
     </div>
   );
 };
