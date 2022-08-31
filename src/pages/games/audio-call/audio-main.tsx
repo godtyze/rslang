@@ -3,7 +3,6 @@ import MyButton from "../../../components/UI/button/button";
 import GameWindow from "./game-window";
 import DifficultyWindow from "./difficulty-window";
 
-const audioPlayer = new Audio();
 const btnArr = [1, 2, 3, 4, 5, 6];
 
 const AudioMain = () => {
@@ -18,13 +17,13 @@ const AudioMain = () => {
     setDifficulty(el);
     setStartGame(true)
 
-    //await playAudio(`https://react-words-example.herokuapp.com/files/05_2490.mp3`);
+    //await
   }
 
   return (
       <div>
         {startGame
-            && <GameWindow diff={difficulty}/>
+            && <GameWindow diff={difficulty - 1}/>
         }
         <div style={{display: startGame ? 'none' : 'flex'}} className='audio-main blur'>
         </div>
@@ -40,11 +39,6 @@ const AudioMain = () => {
   );
 };
 
-async function playAudio(url: string) {
-  audioPlayer.src = url;
-  audioPlayer.load();
-  await audioPlayer.play();
 
-}
 
 export default AudioMain;

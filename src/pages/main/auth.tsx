@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import MyButton from "../../components/UI/button/button";
 import RegisterForm from "../../components/UI/registerForm/registerForm";
 import {CSSTransition} from "react-transition-group";
+import PostService from "../../api/PostService";
 
 
 const Auth: React.FC = () => {

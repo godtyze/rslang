@@ -32,7 +32,7 @@ const Glossary: React.FC = () => {
       <Header className='header glossary'>
         <Link to='/rslang'>
           <svg className='header__link-icon'>
-            <use xlinkHref={`${sprite}#home-icon`}></use>
+            <use xlinkHref={`${sprite}#home-icon`}/>
           </svg>
         </Link>
         <Navigation/>
