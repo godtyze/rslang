@@ -1,7 +1,6 @@
 .dropdown {
   width: 250px;
   user-select: none;
-  margin: 100px auto;
   position: relative;
 }
 .dropdown .dropdown-btn {
