@@ -10,21 +10,26 @@ import {useFetching} from "../../hooks/useFetching";
 import PostService from "../../api/PostService";
 import Pagination from "../../components/UI/pagination/pagination";
 import Footer from "../../components/footer/footer";
+import MySelect from "../../components/UI/mySelect/mySelect";
+import Loader from "../../components/UI/Loader/loader";
 
 
 const Glossary: React.FC = () => {
   const [words, setWords] = useState<Array<Word>>([]);
   const [page, setPage] = useState<number>(1);
+  const [group, setGroup] = useState<number>(1);
+  const [isWordsLoading, setIsWordsLoading] = useState<boolean>(false);
 
   const [fetchWords, error] = useFetching(async () => {
-    const words = await PostService.getWords(page - 1);
+    const words = await PostService.getWords(page - 1, group - 1);
     setWords(words);
   });
 
   useEffect(() => {
+    setIsWordsLoading(true);
     (fetchWords as (() => Promise<void>))();
-  }, [page]);
-
+    setIsWordsLoading(false);
+  }, [page, group]);
 
 
   return (
@@ -37,14 +42,22 @@ const Glossary: React.FC = () => {
         </Link>
         <Navigation/>
       </Header>
-      <WordList words={words}/>
-      <Pagination
-        page={page}
-        onClickNext={() => setPage(page + 1)}
-        onClickPrev={() => setPage(page - 1)}
-        onClickFirst={() => setPage(1)}
-        onClickLast={() => setPage(30)}
-      />
+      <div style={{flex: '1 0 auto', padding: '10px', display: 'flex', justifyContent: 'center'}}>
+        {isWordsLoading
+          ? <Loader/>
+          : <div className='word__list'>
+            <MySelect onSelect={(group: number) => setGroup(group)} selectedGroup={group}/>
+            <WordList words={words}/>
+            <Pagination
+              page={page}
+              onClickNext={() => setPage(page + 1)}
+              onClickPrev={() => setPage(page - 1)}
+              onClickFirst={() => setPage(1)}
+              onClickLast={() => setPage(30)}
+            />
+          </div>
+        }
+      </div>
       <Footer/>
     </div>
   );
