@@ -9,8 +9,8 @@ interface winProps {
 const DifficultyWindow: React.FC<winProps> = ({visible, children}) => {
   return (
       <div style={{display: visible ? 'flex' : 'none'}} className='start-window'>
-        <span className='start-window__title'>Аудиовызов</span>
-        <span className='start-window__text'>Во время игры в Аудиовызов вы долны будете выбрать правильный перевод услышанного вами слова.<br/>
+        <span className='game-title'>Аудиовызов</span>
+        <span className='game-text'>Во время игры в Аудиовызов вы долны будете выбрать правильный перевод услышанного вами слова.<br/>
                 Выберите сложность:
             </span>
         {children}

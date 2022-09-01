@@ -16,8 +16,6 @@ const AudioMain = () => {
   function difficultyHandle(el: number) {
     setDifficulty(el);
     setStartGame(true)
-
-    //await
   }
 
   return (
@@ -30,7 +28,6 @@ const AudioMain = () => {
         <DifficultyWindow visible={!startGame} children={
           <div className='btn-wrapper'>
           {btnArr.map(el => <MyButton key={el}
-                                      //difficulty={el}
                                       onClick={() => difficultyHandle(el)}
                                       className='btn audio'
                                       visible={true}>{el}</MyButton>)}
