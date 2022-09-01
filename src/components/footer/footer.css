@@ -4,7 +4,7 @@
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  flex-shrink: 0;
+  flex: 0 0 auto;
 }
 .footer__year {
   font-family: cursive;

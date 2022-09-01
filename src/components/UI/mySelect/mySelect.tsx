@@ -20,6 +20,7 @@ const MySelect: React.FC<selectProps> = ({onSelect, selectedGroup}) => {
         <div className="dropdown-content">
           {options.map((option) => (
             <div
+              key={option}
               onClick={() => {
                 onSelect(option);
                 setIsActive(false);

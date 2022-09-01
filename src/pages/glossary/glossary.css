@@ -3,6 +3,7 @@
     justify-content: initial;
     align-items: initial;
     row-gap: 20px;
+    height: 100%;
 }
 
 .nav .game-wrapper .game {

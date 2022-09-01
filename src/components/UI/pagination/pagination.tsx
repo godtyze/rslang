@@ -10,7 +10,11 @@ type paginationProps = {
   page: number;
 }
 
-const Pagination: React.FC<paginationProps> = ({onClickFirst, onClickLast, onClickNext, onClickPrev, page}) => {
+const Pagination: React.FC<paginationProps> = ({onClickFirst,
+                                                 onClickLast,
+                                                 onClickNext,
+                                                 onClickPrev,
+                                                 page}) => {
   return (
     <div className='pagination'>
       <MyButton
