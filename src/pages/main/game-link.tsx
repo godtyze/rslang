@@ -1,12 +1,13 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 type gameProps = Record<'path' | 'name' | 'img' | 'width' | 'height', string>
 
 const GameLink: React.FC<gameProps> = ({path, name, img, width, height}) => {
+  const navigate = useNavigate();
   return (
-    <Link to={path} className='game-wrapper'>
-      <div className='game'>
+    <div className='game-wrapper'>
+      <div className='game' onClick={() => navigate(path)}>
         <img
           src={img}
           alt={path.slice(1)}
@@ -15,7 +16,7 @@ const GameLink: React.FC<gameProps> = ({path, name, img, width, height}) => {
         />
         <span>{name}</span>
       </div>
-    </Link>
+    </div>
   );
 };
 

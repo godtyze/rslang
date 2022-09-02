@@ -5,7 +5,7 @@ import sprintImg from '../../assets/png/sprint.png';
 import GameLink from "./game-link";
 
 const games = [
-  { path: '/glossary', name: 'Словарь', img: glossaryImg, width: '100px', height: '100px' },
+  { path: '/glossary/1/1', name: 'Словарь', img: glossaryImg, width: '100px', height: '100px' },
   { path: '/audio-call', name: 'Аудиовызов', img: audioCallImg, width: '100px', height: '100px' },
   { path: '/sprint', name: 'Спринт', img: sprintImg, width: '175px', height: '100px' },
 ];

@@ -14,3 +14,8 @@ export type Word = {
   textMeaningTranslate: string;
   textExampleTranslate: string;
 }
+
+export type glossaryParams = {
+  page: string;
+  group: string;
+}
