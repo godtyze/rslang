@@ -81,7 +81,6 @@
   transform: translate(-50%, -50%);
   width: 350px;
   height: 100px;
-
 }
 
 .timescale-wrapper .timescale {
@@ -155,11 +154,11 @@
   height: 70%;
   width: 50%;
   background-color: darkgreen;
-  position: absolute;
   z-index: 1;
   border-radius: 5px;
   border: 4mm ridge rgba(255, 134, 0, 0.6);
   flex-direction: column;
+  padding-bottom: 30px;
 }
 
 .result-list__item {

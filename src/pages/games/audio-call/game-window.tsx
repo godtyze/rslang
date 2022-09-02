@@ -3,12 +3,9 @@ import MyButton from "../../../components/UI/button/button";
 import {Word} from "../../../../types/types";
 import {useFetching} from "../../../hooks/useFetching";
 import PostService from "../../../api/PostService";
-import glossaryImg from "../../../assets/png/books.png";
-import audioCallImg from "../../../assets/png/speaker.png";
-import sprintImg from "../../../assets/png/sprint.png";
-import GameLink from "../../main/game-link";
 import sprite from "../../../assets/svg/sprite.svg";
 import {Link} from "react-router-dom";
+
 const audioPlayer = new Audio();
 
 
@@ -24,22 +21,27 @@ async function playAudio(url: string) {
 
 const GameWindow: React.FC<gameProps> = ({diff}) => {
   const [words, setWords] = useState<Array<Word>>([]);
+  const [uniqueWords, setUniqueWords] = useState<Array<Word>>([]);
   const [randomWords, setRandomWords] = useState<string[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
   const [targetAnswer, setTargetAnswer] = useState<string[]>([]);
   const [animation, setAnimation] = useState<number>(0);
   const [endGame, setEndGame] = useState<boolean>(false);
+  const [score, setScore] = useState<number>(0);
 
-  const getRandomPage = () => {
-    return Math.floor(Math.random() * 29);
+  const getRandomElement = (n: number) => {
+    return Math.floor(Math.random() * n);
   }
 
-  const getRandomWord = () => {
-    return Math.floor(Math.random() * 19);
-  }
-
-  const getRandomAnswer = () => {
-    return Math.floor(Math.random() * 3);
+  function shuffle(arr: string[]) {
+    let currentIndex = arr.length,  randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [arr[currentIndex], arr[randomIndex]] = [
+        arr[randomIndex], arr[currentIndex]];
+    }
+    return arr;
   }
 
   const createRandomWords = (words: Word[]): string[] => {
@@ -47,40 +49,60 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
     const randomWords: string[] = [];
     const randomAudios: string[] = [];
     while (randomWords.length < 4) {
-      let random = getRandomWord();
+      let random = getRandomElement(19);
       const randomWord = words[random];
       if (randomWords.indexOf(randomWord.wordTranslate) === -1) {
+        //targetWords.forEach((el, idx) => el.wordTranslate === randomWord.wordTranslate ? setTargetWords(targetWords.splice(idx , 1)) : '')
         randomWords.push(randomWord.wordTranslate);
         randomAudios.push(randomWord.audio);
       }
     }
+
     const createUnique = () => {
-      let randomAns = getRandomAnswer();
+      let randomAns = getRandomElement(3);
       if (targetAnswer.indexOf(randomWords[randomAns]) === -1) {
         setTargetAnswer([...targetAnswer, randomWords[randomAns]]);
         playAudio(`https://react-words-example.herokuapp.com/${randomAudios[randomAns]}`);
       } else createUnique()
     }
     createUnique()
-    console.log(targetAnswer)
-    console.log(answers)
     return randomWords;
   }
 
   const answerHandler = (answer: string) => {
+    //setScore((targetAnswer[targetAnswer.length - 1] === answers[answers.length - 1]) ? score + 1 : score)
+
     setAnswers([...answers, answer]);
-    if (targetAnswer.length < 5) {
+    if (targetAnswer.length < 20) {
       setTargetAnswer([...targetAnswer, answer])
       setAnimation(animation + 1);
       setRandomWords(createRandomWords(words));
-    } else setEndGame(true);
+    } else {
+      // let ans = 0;
+      // targetAnswer.forEach(el => targetAnswer.indexOf(el) === answers.indexOf(el) ? ans + 1 : ans)
+      // setScore(ans)
+      let ans = 0;
+      words.forEach(el => answers.indexOf(el.wordTranslate) === targetAnswer.indexOf(el.wordTranslate) ? ans++ : '')
+      setScore(ans)
+      setEndGame(true);
+    }
+    console.log(targetAnswer)
+    console.log(answers)
   }
 
   const [fetchWords, error] = useFetching(async () => {
-    const words = await PostService.getWords(getRandomPage(), diff);
+    const words = await PostService.getWords(getRandomElement(29), diff);
     setWords(words);
     setRandomWords(createRandomWords(words));
   });
+
+  const handleTimerEnd = () => {
+    if (targetAnswer.length < 20) {
+      setAnswers([...answers, `${targetAnswer[targetAnswer.length - 1]}-`]);
+      setRandomWords(createRandomWords(words));
+    } else setEndGame(true);
+
+  }
 
   useEffect(() => {
     (fetchWords as (() => Promise<void>))();
@@ -93,30 +115,43 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
           <div className='result-window'>
             <span style={{color: '#FBF7F5'}} className='game-title'>Ваши результаты:</span>
             <div className='all-games'>
+              <span style={{color: '#FBF7F5'}}
+                    className='game-title'>{`${score} / ${targetAnswer.length}`}</span>
               <Link to='/rslang'>
                 <svg className='header__link-icon'>
                   <use xlinkHref={`${sprite}#home-icon`}/>
                 </svg>
               </Link>
               <Link to='/glossary'>
-                <img src={require('../../../assets/png/books.png')} height='70px' width='70px'/>
+                <img src={require('../../../assets/png/books.png')} height='70px' width='70px'
+                     alt='glossary'/>
               </Link>
             </div>
             <div className='result-list'>
-
-              {words.map(el => answers.indexOf(el.wordTranslate) !== -1
+              {words.map(el => (targetAnswer.indexOf(el.wordTranslate) !== -1 || answers.indexOf(`${el.wordTranslate}-`) !== -1)
                   ? <div className='result-list__item' key={el.id}>
-                    <img key={el.audio} src={require('../../../assets/png/voice-icon.png')} height='30px' width='30px' alt='voice-icon'/>
-                    <span key={el.word} style={{color: '#FBF7F5'}}
+                    <img style={{cursor: 'pointer'}}
+                         onClick={() => playAudio(`https://react-words-example.herokuapp.com/${el.audio}`)}
+                         key={el.audio} src={require('../../../assets/png/voice-icon.png')}
+                         height='30px'
+                         width='30px'
+                         alt='voice-icon'/>
+                    <span key={el.word}
+                          style={{color: '#FBF7F5'}}
                           className='game-text'>{el.word}</span>
-                    <span key={el.transcription} style={{color: '#FBF7F5'}}
+                    <span key={el.transcription}
+                          style={{color: '#FBF7F5'}}
                           className='game-text'>{el.transcription}</span>
-                    <span key={el.wordTranslate} style={{color: '#FBF7F5'}}
+                    <span key={el.wordTranslate}
+                          style={{color: '#FBF7F5'}}
                           className='game-text'>{el.wordTranslate}</span>
-                    <img key={el.image} src={require('../../../assets/png/correctans.png')} height='30px' width='30px'/>
+                    <img key={el.image}
+                         src={answers.indexOf(el.wordTranslate) === targetAnswer.indexOf(el.wordTranslate)
+                             ? require('../../../assets/png/correctans.png')
+                             : require('../../../assets/png/wrongans.png')}
+                         height='30px' width='30px' alt='answer'/>
                   </div>
                   : '')
-                //answers.map(el => <span style={{color: '#FBF7F5'}} className='game-text'>{el}</span>)
               }
             </div>
           </div>}
@@ -124,14 +159,13 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
           <h3 style={{fontSize: '25px', fontFamily: 'Cursive', paddingBottom: '10px'}}>Оставшееся
             время:</h3>
           <div className='time-wrapper'>
-            {/*onAnimationEnd={() => setRandomWords(createRandomWords(words))}*/}
-            <div
-                className="timescale">
+            <div onAnimationEnd={() => handleTimerEnd()}
+                 className="timescale">
               <div className="time"/>
             </div>
           </div>
         </div>
-        <div className='answer-wrapper'>
+        <div style={{display: endGame ? 'none' : 'flex'}} className='answer-wrapper'>
           {randomWords.map(el => <MyButton key={el} onClick={() => answerHandler(el)}
                                            className='audio-game-btn'
                                            visible={true}>{el}</MyButton>)}
