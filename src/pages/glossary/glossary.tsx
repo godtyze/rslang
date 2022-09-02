@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './glossary.css';
 import Header from "../../components/header/header";
-import {Link} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import sprite from '../../assets/svg/sprite.svg';
 import Navigation from "./navigation";
 import WordList from "./word-list";
-import {Word} from "../../../types/types";
+import {glossaryParams, Word} from "../../../types/types";
 import {useFetching} from "../../hooks/useFetching";
 import PostService from "../../api/PostService";
 import Pagination from "../../components/UI/pagination/pagination";
@@ -16,19 +16,19 @@ import Loader from "../../components/UI/Loader/loader";
 
 const Glossary: React.FC = () => {
   const [words, setWords] = useState<Array<Word>>([]);
-  const [page, setPage] = useState<number>(1);
-  const [group, setGroup] = useState<number>(1);
-  const [isWordsLoading, setIsWordsLoading] = useState<boolean>(false);
+  const { group, page } = useParams<glossaryParams>();
+  const navigate = useNavigate();
 
-  const [fetchWords, error] = useFetching(async () => {
-    const words = await PostService.getWords(page - 1, group - 1);
-    setWords(words);
+
+  const [fetchWords, isWordsLoading, error] = useFetching(async () => {
+    if (group && page) {
+      const words = await PostService.getWords(+page - 1, +group - 1);
+      setWords(words);
+    }
   });
 
   useEffect(() => {
-    setIsWordsLoading(true);
     (fetchWords as (() => Promise<void>))();
-    setIsWordsLoading(false);
   }, [page, group]);
 
 
@@ -45,17 +45,17 @@ const Glossary: React.FC = () => {
       <div style={{flex: '1 0 auto', padding: '10px', display: 'flex', justifyContent: 'center'}}>
         {isWordsLoading
           ? <Loader/>
-          : <div className='word__list'>
-            <MySelect onSelect={(group: number) => setGroup(group)} selectedGroup={group}/>
+          : page && group && <div className='word__list'>
+            <MySelect onSelect={(group: number) => navigate(`/glossary/${group}/${page}`)} selectedGroup={+group}/>
             <WordList words={words}/>
             <Pagination
-              page={page}
-              onClickNext={() => setPage(page + 1)}
-              onClickPrev={() => setPage(page - 1)}
-              onClickFirst={() => setPage(1)}
-              onClickLast={() => setPage(30)}
+                page={+page}
+                onClickNext={() => navigate(`/glossary/${group}/${+page + 1}`)}
+                onClickPrev={() => navigate(`/glossary/${group}/${+page - 1}`)}
+                onClickFirst={() => navigate(`/glossary/${group}/1`)}
+                onClickLast={() => navigate(`/glossary/${group}/30`)}
             />
-          </div>
+        </div>
         }
       </div>
       <Footer/>

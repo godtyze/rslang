@@ -57,6 +57,7 @@
   background-color: #9991c9;
   border: 3px solid black;
   color:black;
+  cursor: pointer;
 }
 
 .game-wrapper:hover {

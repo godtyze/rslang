@@ -7,7 +7,7 @@ import {Route, Routes} from "react-router-dom";
 
 const routes = [
   {path: '/', element: <Main/>},
-  {path: '/glossary', element: <Glossary/>},
+  {path: '/glossary/:group/:page', element: <Glossary/>},
   {path: '/audio-call', element: <AudioCall/>},
   {path: '/sprint', element: <Sprint/>},
   {path: '/rslang', element: <Main/>},
