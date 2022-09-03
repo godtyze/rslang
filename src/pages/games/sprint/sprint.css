@@ -1,0 +1,81 @@
+.sprint {
+  background-image: url("../../../assets/jpg/sprint-bg.jpg");
+}
+
+.game-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  width: 500px;
+  background: rgb(80 80 80 / 75%);
+  border-radius: 10px;
+  row-gap: 4em;
+}
+
+.sprint-btn {
+  display: flex;
+  outline: none;
+  border: none;
+  font-family: cursive;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  column-gap: 100px;
+}
+
+.right {
+  background-color: #1cad1c;
+}
+
+.wrong {
+  background-color: #ff3e15;
+}
+
+.game-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.score-wrapper {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 20px;
+}
+
+.timer {
+  font-family: cursive;
+  font-size: 30px;
+  color: #FBF7F5;
+}
+
+.score {
+  font-family: cursive;
+  font-size: 30px;
+  color: #FBF7F5;
+}
+
+.streak {
+  border-radius: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 70px;
+  width: 70px;
+}
+
+.words-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+}

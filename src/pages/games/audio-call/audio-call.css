@@ -1,4 +1,4 @@
-.audio-main {
+.main-window {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,14 +30,14 @@
   padding: 10px 0 10px 0;
   font-family: cursive;
   font-size: 35px;
-  color: purple;
+  color: #ff0074;
 }
 
 .game-text {
   padding: 0 15px 0 15px;
   font-family: cursive;
   font-size: 20px;
-  color: #c70cc7;
+  color: #ff213b;
   text-align: justify;
 }
 

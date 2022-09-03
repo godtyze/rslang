@@ -22,7 +22,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
   const [answers, setAnswers] = useState<string[]>([]);
   const [targetAnswer, setTargetAnswer] = useState<string[]>([]);
   const [barTitle, setBarTitle] = useState<string>('Подготовка:');
-  const [animationTime, setAnimationTime] = useState<number>(3);
+  const [animationTime, setAnimationTime] = useState<number>(2);
   const [animation, setAnimation] = useState<number>(0);
   const [endGame, setEndGame] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
@@ -32,7 +32,6 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
     const randomWords: string[] = [];
     const randomAudios: string[] = [];
     const array = [...uniqueWords];
-    console.log(uniqueWords)
     let random = getRandomElement(array.length - 1);
     let randomWord = array[random];
     array.splice(random, 1);
@@ -49,8 +48,6 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
     }
     shuffle(randomWords);
     setUniqueWords(array);
-    console.log(targetAnswer)
-    console.log(answers)
     return randomWords;
   }
 
@@ -64,8 +61,6 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
     } else {
       setEndGame(true);
     }
-    console.log(targetAnswer)
-    console.log(answers)
   }
 
   const [fetchWords, error] = useFetching(async () => {
@@ -83,7 +78,6 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
       }
       setRandomWords(createRandomWords(words));
     } else setEndGame(true);
-
   }
 
   useEffect(() => {
@@ -104,7 +98,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
   }, [targetAnswer])
 
   return (
-      <div className='audio-main'>
+      <div className='main-window'>
         {endGame
             &&
           <div className='result-window'>
@@ -117,7 +111,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
                   <use xlinkHref={`${sprite}#home-icon`}/>
                 </svg>
               </Link>
-              <Link to='/glossary'>
+              <Link to='/glossary/1/1'>
                 <img src={glossaryLink} height='70px' width='70px'
                      alt='glossary'/>
               </Link>
@@ -151,9 +145,13 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
             </div>
           </div>}
         <div key={animation} className="timescale-wrapper">
-          <h3 style={{fontSize: '25px', fontFamily: 'Cursive', paddingBottom: '10px'}}>{barTitle}</h3>
+          <h3 style={{
+            fontSize: '25px',
+            fontFamily: 'Cursive',
+            paddingBottom: '10px'
+          }}>{barTitle}</h3>
           <div className='time-wrapper'>
-            <div style={{  animation: `loading ${animationTime}s ease-in-out forwards`}}
+            <div style={{animation: `loading ${animationTime}s ease-in-out forwards`}}
                  onAnimationEnd={() => handleTimerEnd()}
                  className="timescale">
               <div className="time"/>
