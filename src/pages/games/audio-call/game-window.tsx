@@ -5,18 +5,14 @@ import {useFetching} from "../../../hooks/useFetching";
 import PostService from "../../../api/PostService";
 import sprite from "../../../assets/svg/sprite.svg";
 import {Link} from "react-router-dom";
-
-const audioPlayer = new Audio();
-
+import {getRandomElement, playAudio, shuffle} from "../../../utils/utils";
+import glossaryLink from '../../../assets/png/books.png';
+import voiceLink from '../../../assets/png/voice-icon.png';
+import correctAnswer from '../../../assets/png/correctans.png';
+import wrongAnswer from '../../../assets/png/wrongans.png';
 
 interface gameProps {
   diff: number;
-}
-
-async function playAudio(url: string) {
-  audioPlayer.src = url;
-  audioPlayer.load();
-  await audioPlayer.play();
 }
 
 const GameWindow: React.FC<gameProps> = ({diff}) => {
@@ -25,65 +21,47 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
   const [randomWords, setRandomWords] = useState<string[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
   const [targetAnswer, setTargetAnswer] = useState<string[]>([]);
+  const [barTitle, setBarTitle] = useState<string>('Подготовка:');
+  const [animationTime, setAnimationTime] = useState<number>(3);
   const [animation, setAnimation] = useState<number>(0);
   const [endGame, setEndGame] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
-
-  const getRandomElement = (n: number) => {
-    return Math.floor(Math.random() * n);
-  }
-
-  function shuffle(arr: string[]) {
-    let currentIndex = arr.length,  randomIndex;
-    while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      [arr[currentIndex], arr[randomIndex]] = [
-        arr[randomIndex], arr[currentIndex]];
-    }
-    return arr;
-  }
 
   const createRandomWords = (words: Word[]): string[] => {
     setAnimation(animation + 1);
     const randomWords: string[] = [];
     const randomAudios: string[] = [];
+    const array = [...uniqueWords];
+    console.log(uniqueWords)
+    let random = getRandomElement(array.length - 1);
+    let randomWord = array[random];
+    array.splice(random, 1);
+    randomWords.push(randomWord.wordTranslate);
+    randomAudios.push(randomWord.audio);
+    playAudio(`https://react-words-example.herokuapp.com/${randomAudios[randomAudios.length - 1]}`);
+    setTargetAnswer([...targetAnswer, randomWord.wordTranslate]);
     while (randomWords.length < 4) {
       let random = getRandomElement(19);
       const randomWord = words[random];
       if (randomWords.indexOf(randomWord.wordTranslate) === -1) {
-        //targetWords.forEach((el, idx) => el.wordTranslate === randomWord.wordTranslate ? setTargetWords(targetWords.splice(idx , 1)) : '')
         randomWords.push(randomWord.wordTranslate);
-        randomAudios.push(randomWord.audio);
       }
     }
-
-    const createUnique = () => {
-      let randomAns = getRandomElement(3);
-      if (targetAnswer.indexOf(randomWords[randomAns]) === -1) {
-        setTargetAnswer([...targetAnswer, randomWords[randomAns]]);
-        playAudio(`https://react-words-example.herokuapp.com/${randomAudios[randomAns]}`);
-      } else createUnique()
-    }
-    createUnique()
+    shuffle(randomWords);
+    setUniqueWords(array);
+    console.log(targetAnswer)
+    console.log(answers)
     return randomWords;
   }
 
   const answerHandler = (answer: string) => {
-    //setScore((targetAnswer[targetAnswer.length - 1] === answers[answers.length - 1]) ? score + 1 : score)
-
     setAnswers([...answers, answer]);
     if (targetAnswer.length < 20) {
       setTargetAnswer([...targetAnswer, answer])
+
       setAnimation(animation + 1);
       setRandomWords(createRandomWords(words));
     } else {
-      // let ans = 0;
-      // targetAnswer.forEach(el => targetAnswer.indexOf(el) === answers.indexOf(el) ? ans + 1 : ans)
-      // setScore(ans)
-      let ans = 0;
-      words.forEach(el => answers.indexOf(el.wordTranslate) === targetAnswer.indexOf(el.wordTranslate) ? ans++ : '')
-      setScore(ans)
       setEndGame(true);
     }
     console.log(targetAnswer)
@@ -92,21 +70,38 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
 
   const [fetchWords, error] = useFetching(async () => {
     const words = await PostService.getWords(getRandomElement(29), diff);
+    setUniqueWords(words);
     setWords(words);
     setRandomWords(createRandomWords(words));
   });
 
   const handleTimerEnd = () => {
     if (targetAnswer.length < 20) {
-      setAnswers([...answers, `${targetAnswer[targetAnswer.length - 1]}-`]);
+      if (targetAnswer.length !== 0) {
+        setAnswers([...answers, 'no choice'])
+
+      }
       setRandomWords(createRandomWords(words));
     } else setEndGame(true);
 
   }
 
   useEffect(() => {
+    let ans = 0;
+    words.forEach(el => answers.indexOf(el.wordTranslate) === targetAnswer.indexOf(el.wordTranslate) ? ans++ : '')
+    setScore(ans)
+  }, [answers])
+
+  useEffect(() => {
     (fetchWords as (() => Promise<void>))();
   }, [])
+
+  useEffect(() => {
+    if (targetAnswer.length > 0) {
+      setBarTitle('Оставшееся время:')
+      setAnimationTime(6)
+    }
+  }, [targetAnswer])
 
   return (
       <div className='audio-main'>
@@ -123,7 +118,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
                 </svg>
               </Link>
               <Link to='/glossary'>
-                <img src={require('../../../assets/png/books.png')} height='70px' width='70px'
+                <img src={glossaryLink} height='70px' width='70px'
                      alt='glossary'/>
               </Link>
             </div>
@@ -132,7 +127,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
                   ? <div className='result-list__item' key={el.id}>
                     <img style={{cursor: 'pointer'}}
                          onClick={() => playAudio(`https://react-words-example.herokuapp.com/${el.audio}`)}
-                         key={el.audio} src={require('../../../assets/png/voice-icon.png')}
+                         key={el.audio} src={voiceLink}
                          height='30px'
                          width='30px'
                          alt='voice-icon'/>
@@ -147,8 +142,8 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
                           className='game-text'>{el.wordTranslate}</span>
                     <img key={el.image}
                          src={answers.indexOf(el.wordTranslate) === targetAnswer.indexOf(el.wordTranslate)
-                             ? require('../../../assets/png/correctans.png')
-                             : require('../../../assets/png/wrongans.png')}
+                             ? correctAnswer
+                             : wrongAnswer}
                          height='30px' width='30px' alt='answer'/>
                   </div>
                   : '')
@@ -156,10 +151,10 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
             </div>
           </div>}
         <div key={animation} className="timescale-wrapper">
-          <h3 style={{fontSize: '25px', fontFamily: 'Cursive', paddingBottom: '10px'}}>Оставшееся
-            время:</h3>
+          <h3 style={{fontSize: '25px', fontFamily: 'Cursive', paddingBottom: '10px'}}>{barTitle}</h3>
           <div className='time-wrapper'>
-            <div onAnimationEnd={() => handleTimerEnd()}
+            <div style={{  animation: `loading ${animationTime}s ease-in-out forwards`}}
+                 onAnimationEnd={() => handleTimerEnd()}
                  className="timescale">
               <div className="time"/>
             </div>
