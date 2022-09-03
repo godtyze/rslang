@@ -13,7 +13,7 @@ export const getRandomElement = (n: number) => {
 
 export function shuffle(arr: string[]) {
   let idx = arr.length, randomIdx;
-  while (idx != 0) {
+  while (idx !== 0) {
     randomIdx = Math.floor(Math.random() * idx);
     idx--;
     [arr[idx], arr[randomIdx]] = [

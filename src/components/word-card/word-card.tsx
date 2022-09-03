@@ -3,6 +3,7 @@ import './word-card.css';
 import {Word} from "../../../types/types";
 import {server} from "../../consts/consts";
 import { FastAverageColor } from 'fast-average-color';
+import { AiFillSound } from 'react-icons/ai';
 
 type wordCardProps = Omit<Word, 'id' | 'page' | 'group'>;
 type averageColor = {
@@ -32,6 +33,37 @@ const WordCard: React.FC<wordCardProps> = ({word,
   });
 
 
+  const audioPlayer = new Audio();
+  const playWord = async (url: string, phase?: number) => {
+    audioPlayer.src = `${server}${url}`;
+    audioPlayer.load();
+    await audioPlayer.play();
+
+    let nextPhase: number;
+    let nextAudio: string;
+
+    if (phase === 1) {
+      nextPhase = 2;
+      nextAudio = audioMeaning;
+    }
+
+    if (phase === 2) {
+      nextPhase = 3;
+      nextAudio = audioExample;
+    }
+
+    if (phase === 3) {
+      return;
+    }
+
+    const playNext = () => {
+      audioPlayer.removeEventListener('ended', playNext);
+      playWord(nextAudio, nextPhase);
+    };
+
+    audioPlayer.addEventListener('ended', playNext);
+  };
+
   return (
     <div className='word__card card' style={{background: `${averageColorData.color}`}}>
       <div className='card__main' style={{background: `url(${server}${image})`}}>
@@ -40,6 +72,7 @@ const WordCard: React.FC<wordCardProps> = ({word,
           <div className='card__header-details'>
             <span>{wordTranslate}</span>
             <span>{transcription}</span>
+            <AiFillSound onClick={() => playWord(audio, 1)} style={{cursor: 'pointer'}}/>
           </div>
         </div>
       </div>
