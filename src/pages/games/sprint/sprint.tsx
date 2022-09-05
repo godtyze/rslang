@@ -1,11 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import MyButton from '../../../components/UI/button/button';
+import SprintMain from "./sprint-main";
 
-const Sprint: React.FC = () => {
+const AudioCall = () => {
   return (
-    <div>
-      Sprint!
-    </div>
+      <div>
+        <SprintMain/>
+        <Link to='/rslang'><MyButton className={'game-button'} visible={true}>X</MyButton>
+        </Link>
+      </div>
   );
 };
 
-export default Sprint;
+
+
+export default AudioCall;

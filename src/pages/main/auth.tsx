@@ -10,7 +10,7 @@ const Auth: React.FC = () => {
   const [showForm, setShowForm] = useState<boolean>(false);
 
   return (
-    <div>
+    <div className='auth-window'>
       {showButton
         && <MyButton
               className={'btn login-button'}
