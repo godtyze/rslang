@@ -3,10 +3,10 @@ import './button.css';
 
 interface btnProps {
   children?: React.ReactNode;
+  disabled?: boolean;
   className: string;
   onClick?: (el?: number) => void;
   visible?: boolean;
-  difficulty?: number;
 }
 
 const MyButton: React.FC<btnProps> = ({className,
@@ -14,7 +14,7 @@ const MyButton: React.FC<btnProps> = ({className,
 
                                         onClick,
                                         visible,
-                                        difficulty}) => {
+                                        disabled}) => {
   const onClickHandler = () => {
     if (onClick) onClick();
   }
@@ -22,6 +22,7 @@ const MyButton: React.FC<btnProps> = ({className,
     <button
             style={{display: visible ? 'flex' : 'none'}}
             onClick={onClickHandler}
+            disabled={disabled}
             className={className}>
       {children}
     </button>
