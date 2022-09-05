@@ -14,3 +14,22 @@ input {
   font-size: 18px;
   width: 75%;
 }
+
+@media (max-width: 800px) {
+  .form-input {
+    width: 100px;
+  }
+  input {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 450px) {
+  .form-input {
+    width: 60px;
+    height: 20px;
+  }
+  input {
+    font-size: 9px;
+  }
+}

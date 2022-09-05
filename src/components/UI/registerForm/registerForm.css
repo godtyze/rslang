@@ -7,7 +7,7 @@
   background-color: #ffcb8f;
   border-radius: 10px;
   border: 2px solid black;
-  margin: 20px 0 0 20px;
+  margin: 220px 0 0 20px;
   row-gap: 15px;
 }
 
@@ -27,4 +27,30 @@
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
+}
+
+@media (max-width: 1200px) {
+  .register-form {
+    z-index: 1;
+  }
+}
+
+@media (max-width: 800px) {
+  .register-form {
+    width: 150px;
+    height: 200px;
+    border: 1px solid black;
+    row-gap: 5px;
+    margin: 150px 0 0 20px;
+  }
+}
+
+@media (max-width: 450px) {
+  .register-form {
+    width: 90px;
+    height: 150px;
+    border: 1px solid black;
+    row-gap: 5px;
+    margin: 100px 0 0 20px;
+  }
 }

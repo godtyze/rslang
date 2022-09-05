@@ -19,4 +19,12 @@ body {
   background-image: url('./assets/jpg/main-background.jpg');
 }
 
+@media (max-width: 800px) {
+  .App {
+    min-height: auto;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
 

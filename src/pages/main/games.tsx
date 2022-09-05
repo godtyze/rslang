@@ -5,9 +5,9 @@ import sprintImg from '../../assets/png/sprint.png';
 import GameLink from "./game-link";
 
 const games = [
-  { path: '/glossary/1/1', name: 'Словарь', img: glossaryImg, width: '100px', height: '100px' },
-  { path: '/audio-call', name: 'Аудиовызов', img: audioCallImg, width: '100px', height: '100px' },
-  { path: '/sprint', name: 'Спринт', img: sprintImg, width: '175px', height: '100px' },
+  { path: '/glossary/1/1', name: 'Словарь', img: glossaryImg, width: '100px', height: '100px', className: 'game-image' },
+  { path: '/audio-call', name: 'Аудиовызов', img: audioCallImg, width: '100px', height: '100px', className: 'game-image' },
+  { path: '/sprint', name: 'Спринт', img: sprintImg, width: '175px', height: '100px', className: 'sprint-logo' },
 ];
 
 const Games: React.FC = () => {
@@ -22,6 +22,7 @@ const Games: React.FC = () => {
           name={game.name}
           width={game.width}
           height={game.height}
+          className={game.className}
         />)}
       </div>
     </div>

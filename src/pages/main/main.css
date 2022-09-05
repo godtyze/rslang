@@ -1,9 +1,26 @@
 .main {
   display: flex;
+  flex-direction: column;
+  max-width: 100%;
   width: 100%;
   background-size: cover;
   flex-grow: 1;
-  justify-content: space-between;
+  justify-content: center;
+  height: auto;
+  align-items: center;
+}
+
+.main-header {
+  padding: 20px 20px 0 20px;
+  display: flex;
+  max-width: 1920px;
+  width: 100%;
+  height: 100px;
+}
+
+.auth-window {
+  display: flex;
+  align-items: center;
 }
 
 .auth-wrapper {
@@ -56,7 +73,7 @@
   justify-content: center;
   background-color: #9991c9;
   border: 3px solid black;
-  color:black;
+  color: black;
   cursor: pointer;
 }
 
@@ -83,7 +100,6 @@
 .profile-logo {
   height: 100px;
   width: 100px;
-  margin: 30px 30px 0 0;
   display: flex;
   flex-direction: column;
   font-size: 20px;
@@ -93,12 +109,85 @@
   background-color: white;
   border-radius: 50px;
   transition: 0.3s;
-
+  margin-left: auto;
 }
 
 .profile-logo:hover {
   color: bisque;
   background-color: bisque;
+}
+
+@media (max-width: 800px) {
+  .about {
+    font-size: 25px;
+    padding: 60px 20px 0 20px;
+    text-align: justify;
+  }
+
+  .game {
+    width: 100px;
+    height: 130px;
+    font-size: 15px;
+  }
+
+  .main-image {
+    height: 70px;
+    width: 70px;
+  }
+  .profile-logo {
+    align-items: center;
+    height: 70px;
+    width: 70px;
+    font-size: 16px;
+  }
+
+  .game-image {
+    height: 70px;
+    width: 70px;
+  }
+  .sprint-logo {
+    height: 70px;
+    width: 100px;
+  }
+}
+
+@media (max-width: 450px) {
+  .main-image {
+    height: 40px;
+    width: 40px;
+  }
+  .profile-logo {
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    font-size: 10px;
+  }
+  .about {
+    font-size: 15px;
+  }
+  .game {
+    width: 70px;
+    height: 80px;
+    font-size: 11px;
+  }
+  .game-image {
+    height: 40px;
+    width: 40px;
+  }
+  .sprint-logo {
+    height: 40px;
+    width: 70px;
+  }
+  .main-header {
+    align-items: center;
+    padding-top: 0;
+  }
+  .games-wrapper {
+    padding-top: 20px;
+  }
+  .game-wrapper {
+    border: 1px solid black;
+  }
 }
 
 

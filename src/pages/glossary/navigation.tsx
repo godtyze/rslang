@@ -6,22 +6,24 @@ import sprintImg from "../../assets/png/sprint.png";
 
 const Navigation: React.FC = () => {
   return (
-  <nav className='header__nav nav'>
-    <GameLink
-      path='/audio-call'
-      img={audioCallImg}
-      width='50px'
-      height='50px'
-      name='Аудиовызов'
-    />
-    <GameLink
-      path='/sprint'
-      img={sprintImg}
-      width='100px'
-      height='60px'
-      name='Спринт'
-    />
-  </nav>
+      <nav className='header__nav nav'>
+        <GameLink
+            className=''
+            path='/audio-call'
+            img={audioCallImg}
+            width='50px'
+            height='50px'
+            name='Аудиовызов'
+        />
+        <GameLink
+            className=''
+            path='/sprint'
+            img={sprintImg}
+            width='100px'
+            height='60px'
+            name='Спринт'
+        />
+      </nav>
   );
 };
 

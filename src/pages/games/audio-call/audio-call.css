@@ -5,6 +5,8 @@
   flex-direction: column;
   min-height: 100vh;
   background-image: url("../../../assets/jpg/audio-bg.jpg");
+  max-width: 1920px;
+  width: 100%;
 }
 
 .blur {
@@ -167,4 +169,31 @@
   align-items: center;
   column-gap: 10px;
   border-bottom: 1px solid white;
+}
+
+@media (max-width: 1200px) {
+  .start-window {
+    left: 10%;
+    top: 10%;
+    width: 80%;
+  }
+  .main-window {
+    background-size: cover;
+    min-height: 60vh;
+  }
+}
+
+@media (max-width: 450px) {
+  .main-window {
+    min-height: 50vh;
+  }
+  .start-window {
+    width: 80%;
+  }
+  .game-text {
+    font-size: 14px;
+  }
+  .btn-wrapper {
+    width: 280px;
+  }
 }

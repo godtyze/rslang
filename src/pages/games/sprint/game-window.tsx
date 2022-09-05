@@ -7,15 +7,19 @@ import sprite from "../../../assets/svg/sprite.svg";
 import {Link} from "react-router-dom";
 import {getRandomElement, playAudio, shuffle} from "../../../utils/utils";
 import glossaryLink from '../../../assets/png/books.png';
-import voiceLink from '../../../assets/png/voice-icon.png';
-import correctAnswer from '../../../assets/png/correctans.png';
-import wrongAnswer from '../../../assets/png/wrongans.png';
-import streak1 from'../../../assets/png/1.png'
-import streak2 from'../../../assets/png/2.png'
-import streak3 from'../../../assets/png/3.png'
-import streak4 from'../../../assets/png/4.png'
+import streak1 from '../../../assets/png/1.png'
+import streak2 from '../../../assets/png/2.png'
+import streak3 from '../../../assets/png/3.png'
+import streak4 from '../../../assets/png/4.png'
+
 const btnArr = [{text: '❮ Не верно', class: 'wrong'}, {text: 'Верно ❯', class: 'right'}]
 
+const STREAK = [
+  {streak: 1, value: streak1},
+  {streak: 2, value: streak2},
+  {streak: 3, value: streak3},
+  {streak: 4, value: streak4},
+]
 
 interface gameProps {
   diff: number;
@@ -23,16 +27,13 @@ interface gameProps {
 
 const GameWindow: React.FC<gameProps> = ({diff}) => {
   const [words, setWords] = useState<Array<Word>>([]);
-  const [uniqueWords, setUniqueWords] = useState<Array<Word>>([]);
-  const [randomWords, setRandomWords] = useState<string[]>([]);
-  const [answers, setAnswers] = useState<string[]>([]);
   const [targetAnswer, setTargetAnswer] = useState<number>(0);
-  const [barTitle, setBarTitle] = useState<string>('Подготовка:');
-  const [animationTime, setAnimationTime] = useState<number>(3);
   const [endGame, setEndGame] = useState<boolean>(false);
   const [currentWord, setCurrentWord] = useState<string>('');
   const [currentWordTranslate, setCurrentWordTranslate] = useState<string>('');
   const [points, setPoints] = useState<number>(0);
+  const [streak, setStreak] = useState<number>(0);
+  const [time, setTime] = useState<number>(60);
 
   const pushRandomTranslate = (words: Word[]) => {
     setCurrentWord(words[targetAnswer].word)
@@ -40,35 +41,45 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
     if (random === 1) {
       setCurrentWordTranslate(words[targetAnswer].wordTranslate);
     } else setCurrentWordTranslate(words[getRandomElement(59)].wordTranslate);
-
   }
 
   const answerHandler = (ans: string) => {
-    console.log(currentWordTranslate)
-    console.log(currentWord)
-    if (ans === 'Верно ❯' && currentWord === currentWordTranslate) {
-      setPoints(points + 1)
-    }
+    if ((ans === 'Верно ❯' && currentWordTranslate === words[targetAnswer - 1].wordTranslate)
+        || ((ans === '❮ Не верно') && currentWordTranslate !== words[targetAnswer - 1].wordTranslate)) {
+      if (streak < 3) {
+        setStreak(streak + 1)
+        setPoints(points + 10)
+      } else {
+        setPoints(points + streak * 10)
+      }
+    } else setStreak(0);
+    setTargetAnswer(targetAnswer + 1);
+    console.log(targetAnswer)
+    console.log(streak)
+    pushRandomTranslate(words);
   }
 
   const [fetchWords, error] = useFetching(async () => {
     const randomPage = getRandomElement(26);
     const words = await PostService.getWords(randomPage, diff);
     setWords(words.concat(await PostService.getWords(randomPage + 1, diff)).concat(await PostService.getWords(randomPage + 2, diff)));
-    //setTimeout(() => pushRandomTranslate(words), 2)
-
-    //setTimeout(() => pushRandomTranslate(words[targetAnswer]), 2)
   });
 
-  // useEffect(() => {
-  //   let ans = 0;
-  //   words.forEach(el => answers.indexOf(el.wordTranslate) === targetAnswer.indexOf(el.wordTranslate) ? ans++ : '')
-  //   setScore(ans)
-  // }, [answers])
 
-  (useEffect(() => {
-    setTimeout(() => pushRandomTranslate(words), 2)
-  }, [words]))
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (time > 0) {
+        setTime(time - 1);
+      } else setEndGame(true)
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [time])
+
+  useEffect(() => {
+    setTimeout(() => pushRandomTranslate(words), 1)
+    setTargetAnswer(targetAnswer + 1)
+    console.log(words)
+  }, [words])
 
   useEffect(() => {
     (fetchWords as (() => Promise<void>))();
@@ -94,16 +105,16 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
           </div>}
         <div className='game-field'>
           <div className='score-wrapper'>
-            <span className='timer'>60</span>
+            <span className='timer'>{time}</span>
             <span className='score'>{points}</span>
           </div>
           <div className='game-window'>
 
-            <div style={{backgroundImage: `url(${streak1})`}} className='streak'>
+            <div style={{backgroundImage: `url(${STREAK[streak].value})`}} className='streak'>
             </div>
             <div className='words-container'>
-            <span style={{color: 'white'}} className='game-title'>{currentWord}</span>
-            <span>{currentWordTranslate}</span>
+              <span style={{color: 'white'}} className='game-title'>{currentWord}</span>
+              <span>{currentWordTranslate}</span>
             </div>
             <div className='button-wrapper'>
               {btnArr.map(el => <MyButton key={el.text}
@@ -112,16 +123,6 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
                                           visible={true}>
                 {el.text}
               </MyButton>)}
-              {/*<MyButton onClick={() => answerHandler()}*/}
-              {/*          className='sprint-btn wrong'*/}
-              {/*          visible={true}>*/}
-              {/*  */}
-              {/*</MyButton>*/}
-              {/*<MyButton onClick={() => answerHandler()}*/}
-              {/*          className='sprint-btn right'*/}
-              {/*          visible={true}>*/}
-              {/*  Верно ❯*/}
-              {/*</MyButton>*/}
             </div>
           </div>
         </div>
