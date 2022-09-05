@@ -1,5 +1,7 @@
 .sprint {
   background-image: url("../../../assets/jpg/sprint-bg.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 .game-window {
@@ -56,16 +58,29 @@
   font-family: cursive;
   font-size: 30px;
   color: #FBF7F5;
+  border: 3px solid #00c7ff;
+  border-radius: 50px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #79d6ff;
 }
 
 .score {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: cursive;
   font-size: 30px;
   color: #FBF7F5;
+  border-bottom: 4px solid #00c7ff;
 }
 
 .streak {
-  border-radius: 20px;
+  border-radius: 50px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -78,4 +93,33 @@
   display: flex;
   flex-direction: column;
   height: 100px;
+}
+
+.game-translate {
+  font-size: 20px;
+}
+
+@media (max-width: 1200px) {
+
+  .game-window {
+    height: 300px;
+    width: 300px;
+  }
+
+  .timer {
+    font-size: 20px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .game-window {
+    row-gap: 0;
+  }
+
+  .button-wrapper {
+    column-gap: 50px;
+  }
+  .game-title {
+    margin: 0;
+  }
 }

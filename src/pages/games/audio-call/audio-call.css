@@ -147,6 +147,26 @@
   border: 2px solid #FBF7F5;
   border-radius: 10px;
   width: auto;
+  max-height: 65vh;
+  min-height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.result-list::-webkit-scrollbar {
+  padding-top: 20px;
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+  position: absolute;
+  top: 40px;
+}
+
+.result-list::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: antiquewhite;
+  position: absolute;
+  top: 40px;
 }
 
 .result-window {
@@ -171,7 +191,23 @@
   border-bottom: 1px solid white;
 }
 
+.timescale-title {
+  font-size: 25px;
+  font-family: Cursive, serif;
+  padding-bottom: 10px;
+}
+
 @media (max-width: 1200px) {
+  .result-window {
+    width: 80%;
+  }
+  .timescale-wrapper {
+    top: 10%;
+  }
+  .audio-game-btn {
+    font-size: 15px;
+    width: 130px;
+  }
   .start-window {
     left: 10%;
     top: 10%;
@@ -179,21 +215,88 @@
   }
   .main-window {
     background-size: cover;
-    min-height: 60vh;
+  }
+}
+
+@media (max-width: 800px) {
+  .game-text {
+    font-size: 10px;
+  }
+  .timescale-wrapper {
+    top: 20%;
+  }
+  .timescale-wrapper .timescale {
+    height: 13px;
+  }
+
+  .audio-game-btn {
+    font-size: 10px;
+    width: 80px;
+  }
+
+  .timescale-title {
+    font-size: 20px;
+    font-family: Cursive, serif;
+    padding-bottom: 10px;
+  }
+
+  .time-wrapper {
+    height: 15px;
   }
 }
 
 @media (max-width: 450px) {
+  .game-title {
+    font-size: 20px;
+  }
+  .result-window {
+    width: 100%;
+  }
+  .game-text {
+    font-size: 7px;
+  }
+
+  .result-list__item {
+    padding: 0;
+    max-width: 300px;
+  }
+  .result-list {
+    max-height: 5vh;
+    min-height: 300px;
+    overflow-x: scroll;
+  }
+  .audio {
+    height: 30px;
+    width: 30px;
+    font-size: 15px;
+  }
+  .time-wrapper {
+    width: 100px;
+  }
+  .answer-wrapper {
+    width: 300px;
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .audio-game-btn {
+    font-size: 15px;
+    width: 140px;
+  }
+  .timescale-wrapper {
+    left: 50%;
+    overflow-x: hidden;
+    width: 250px;
+  }
+  .time-wrapper {
+    width: 250px;
+  }
   .main-window {
     min-height: 50vh;
   }
   .start-window {
     width: 80%;
   }
-  .game-text {
-    font-size: 14px;
-  }
   .btn-wrapper {
-    width: 280px;
+    width: 220px;
   }
 }

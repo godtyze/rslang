@@ -145,11 +145,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
             </div>
           </div>}
         <div key={animation} className="timescale-wrapper">
-          <h3 style={{
-            fontSize: '25px',
-            fontFamily: 'Cursive',
-            paddingBottom: '10px'
-          }}>{barTitle}</h3>
+          <h3 className='timescale-title'>{barTitle}</h3>
           <div className='time-wrapper'>
             <div style={{animation: `loading ${animationTime}s ease-in-out forwards`}}
                  onAnimationEnd={() => handleTimerEnd()}
