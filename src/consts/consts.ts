@@ -5,3 +5,6 @@ export const paths = {
   users: `${server}users`,
   signIn: `${server}signin`
 }
+
+export const expireTime = 4;
+export const refreshTime = 2;

@@ -19,3 +19,22 @@ export type glossaryParams = {
   page: string;
   group: string;
 }
+
+export type User = {
+  email: string;
+  password: string;
+}
+
+export type registerRes = {
+  id: string;
+  email: string;
+}
+
+export type SingInRes = {
+  message: string;
+  token: string;
+  refreshToken: string;
+  userId: string;
+  name: string;
+  tokenExpire?: string;
+}
