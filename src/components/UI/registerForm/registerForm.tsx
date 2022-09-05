@@ -103,7 +103,7 @@ const RegisterForm: React.FC<formProps> = ({onClick}) => {
               type='password'
               placeholder='Password'/>
           {error && !isAuth &&
-              <div style={{color: 'red', fontSize: '13px'}}>{error}</div>}
+              <div style={{color: 'red', fontSize: '13px', textAlign: 'center'}}>{error}</div>}
           <MyButton
             className='btn enter-button'
             disabled={!formValid}
