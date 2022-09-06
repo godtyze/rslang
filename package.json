@@ -1,6 +1,7 @@
 {
   "name": "rslang",
   "version": "0.1.0",
+  "homepage": "https://godtyze.github.io/rslang/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
@@ -26,6 +27,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -52,6 +55,7 @@
   "devDependencies": {
     "@types/react-transition-group": "^4.4.5",
     "fast-average-color": "^9.1.1",
+    "gh-pages": "^4.0.0",
     "moment": "^2.29.4",
     "react-transition-group": "^4.4.5"
   }

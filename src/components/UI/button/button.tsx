@@ -6,12 +6,13 @@ interface btnProps {
   disabled?: boolean;
   className: string;
   onClick?: (el?: number) => void;
+  onKeyDown?: () => void;
   visible?: boolean;
 }
 
 const MyButton: React.FC<btnProps> = ({className,
                                         children,
-
+                                        onKeyDown,
                                         onClick,
                                         visible,
                                         disabled}) => {
@@ -22,6 +23,7 @@ const MyButton: React.FC<btnProps> = ({className,
     <button
             style={{display: visible ? 'flex' : 'none'}}
             onClick={onClickHandler}
+            onKeyDown={onKeyDown}
             disabled={disabled}
             className={className}>
       {children}
