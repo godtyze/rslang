@@ -35,7 +35,7 @@ const Glossary: React.FC = () => {
   return (
     <div className='App glossary'>
       <Header className='header glossary'>
-        <Link to='/rslang'>
+        <Link to='/'>
           <svg className='header__link-icon'>
             <use xlinkHref={`${sprite}#home-icon`}/>
           </svg>
