@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "./static/css/main.d5bd733c.css",
-    "main.js": "./static/js/main.db2f5796.js",
-    "static/media/audio-bg.jpg": "./static/media/audio-bg.fbce15898a35987ecf8d.jpg",
-    "static/media/main-background.jpg": "./static/media/main-background.7e919947f19f3e67beef.jpg",
-    "static/media/glossary-bg.jpg": "./static/media/glossary-bg.ef96661d74fba4e28069.jpg",
-    "static/media/sprint-bg.jpg": "./static/media/sprint-bg.f5507a3fe824620a7359.jpg",
-    "static/media/books.png": "./static/media/books.af62976db3d2ee9acdc5.png",
-    "static/media/github.png": "./static/media/github.a5527b5c02e754fc4a6d.png",
-    "static/media/sprint.png": "./static/media/sprint.1e5eb34ce260d9829728.png",
-    "static/media/speaker.png": "./static/media/speaker.5dd5f9a169d8db5355dd.png",
-    "static/media/rss.svg": "./static/media/rss.8897c2000792c418c62f.svg",
-    "index.html": "./index.html",
-    "static/media/sprite.svg": "./static/media/sprite.3058e2193d0b0035224e9981faf1c842.svg",
-    "main.d5bd733c.css.map": "./static/css/main.d5bd733c.css.map",
-    "main.db2f5796.js.map": "./static/js/main.db2f5796.js.map"
+    "main.css": "/rslang/static/css/main.9a5c5a84.css",
+    "main.js": "/rslang/static/js/main.da53100b.js",
+    "static/media/audio-bg.jpg": "/rslang/static/media/audio-bg.fbce15898a35987ecf8d.jpg",
+    "static/media/main-background.jpg": "/rslang/static/media/main-background.7e919947f19f3e67beef.jpg",
+    "static/media/glossary-bg.jpg": "/rslang/static/media/glossary-bg.ef96661d74fba4e28069.jpg",
+    "static/media/sprint-bg.jpg": "/rslang/static/media/sprint-bg.f5507a3fe824620a7359.jpg",
+    "static/media/books.png": "/rslang/static/media/books.af62976db3d2ee9acdc5.png",
+    "static/media/github.png": "/rslang/static/media/github.a5527b5c02e754fc4a6d.png",
+    "static/media/sprint.png": "/rslang/static/media/sprint.1e5eb34ce260d9829728.png",
+    "static/media/speaker.png": "/rslang/static/media/speaker.5dd5f9a169d8db5355dd.png",
+    "static/media/rss.svg": "/rslang/static/media/rss.8897c2000792c418c62f.svg",
+    "index.html": "/rslang/index.html",
+    "static/media/sprite.svg": "/rslang/static/media/sprite.3058e2193d0b0035224e9981faf1c842.svg",
+    "main.9a5c5a84.css.map": "/rslang/static/css/main.9a5c5a84.css.map",
+    "main.da53100b.js.map": "/rslang/static/js/main.da53100b.js.map"
   },
   "entrypoints": [
-    "static/css/main.d5bd733c.css",
-    "static/js/main.db2f5796.js"
+    "static/css/main.9a5c5a84.css",
+    "static/js/main.da53100b.js"
   ]
 }
