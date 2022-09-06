@@ -24,7 +24,7 @@ const App = () => {
   }, [dispatch, isAuth]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/rslang'>
       <AppRouter/>
     </BrowserRouter>
   );
