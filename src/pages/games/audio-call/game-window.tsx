@@ -155,9 +155,11 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
           </div>
         </div>
         <div style={{display: endGame ? 'none' : 'flex'}} className='answer-wrapper'>
-          {randomWords.map(el => <MyButton key={el} onClick={() => answerHandler(el)}
-                                           className='audio-game-btn'
-                                           visible={true}>{el}</MyButton>)}
+          {randomWords.map((el) => <MyButton
+              key={el}
+              onClick={() => answerHandler(el)}
+              className='audio-game-btn'
+              visible={true}>{el}</MyButton>)}
         </div>
       </div>
   );

@@ -18,16 +18,12 @@ const Main: React.FC = () => {
         </div>
       </header>
       <main className='main'>
-
           <Games/>
           <div className='about'>
                 <span>Изучайте иностранные языки вместе с нами!
                 Благодаря нашему приложению познавать новое увлекательно и весело, опробуйте наши миниигры, и убедитесь сами<br/>
                 </span>
           </div>
-
-
-
       </main>
       <Footer/>
     </div>
