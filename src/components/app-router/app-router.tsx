@@ -10,6 +10,7 @@ const routes = [
   {path: '/glossary/:group/:page', element: <Glossary/>},
   {path: '/audio-call', element: <AudioCall/>},
   {path: '/sprint', element: <Sprint/>},
+  {path: '/rslang', element: <Main/>},
   {path: '*', element: <Main/>}
 ];
 
