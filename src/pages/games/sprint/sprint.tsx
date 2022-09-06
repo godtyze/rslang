@@ -7,7 +7,7 @@ const AudioCall = () => {
   return (
       <div>
         <SprintMain/>
-        <Link to='/rslang'><MyButton className={'game-button'} visible={true}>X</MyButton>
+        <Link to='/'><MyButton className={'game-button'} visible={true}>X</MyButton>
         </Link>
       </div>
   );

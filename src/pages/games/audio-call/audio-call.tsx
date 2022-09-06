@@ -8,7 +8,7 @@ const AudioCall = () => {
   return (
       <div>
         <AudioMain/>
-        <Link to='/rslang'><MyButton className={'game-button'} visible={true}>X</MyButton>
+        <Link to='/'><MyButton className={'game-button'} visible={true}>X</MyButton>
         </Link>
       </div>
   );
