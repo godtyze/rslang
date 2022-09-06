@@ -20,7 +20,7 @@ const Glossary: React.FC = () => {
   const navigate = useNavigate();
 
 
-  const [fetchWords, isWordsLoading, error] = useFetching(async () => {
+  const [fetchWords, isWordsLoading] = useFetching(async () => {
     if (group && page) {
       const words = await PostService.getWords(+page - 1, +group - 1);
       setWords(words);
@@ -35,7 +35,7 @@ const Glossary: React.FC = () => {
   return (
     <div className='App glossary'>
       <Header className='header glossary'>
-        <Link to='/rslang'>
+        <Link to='/'>
           <svg className='header__link-icon'>
             <use xlinkHref={`${sprite}#home-icon`}/>
           </svg>
