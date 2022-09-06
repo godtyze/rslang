@@ -22,14 +22,6 @@ const initialState: UserState = {
   userId: initialUser?.userId || '',
   refreshToken: initialUser?.refreshToken || ''
 };
-console.log(initialState);
-
-const getInitialUser = (): UserState => {
-  const savedData = localStorage.getItem('userData');
-  if (savedData) return {...JSON.parse(savedData), isAuth: !!JSON.parse(savedData).token}
-
-  return initialState;
-}
 
 export const userSlice = createSlice({
   name: 'user',
