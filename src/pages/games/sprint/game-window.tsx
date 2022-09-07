@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import MyButton from "../../../components/UI/button/button";
-import {Word} from "../../../../types/types";
+import {Word} from "../../../types/types";
 import {useFetching} from "../../../hooks/useFetching";
 import PostService from "../../../api/PostService";
 import sprite from "../../../assets/svg/sprite.svg";
@@ -65,7 +65,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
     pushRandomTranslate(words);
   }
 
-  const [fetchWords, error] = useFetching(async () => {
+  const [fetchWords] = useFetching(async () => {
     const randomPage = getRandomElement(26);
     const words = await PostService.getWords(randomPage, diff);
     setWords(words.concat(await PostService.getWords(randomPage + 1, diff)).concat(await PostService.getWords(randomPage + 2, diff)));

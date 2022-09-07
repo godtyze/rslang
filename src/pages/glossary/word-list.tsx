@@ -1,5 +1,5 @@
 import React from 'react';
-import {Word} from "../../../types/types";
+import {Word} from "../../types/types";
 import WordCard from "../../components/word-card/word-card";
 import './word-list.css';
 

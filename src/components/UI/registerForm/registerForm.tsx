@@ -5,7 +5,7 @@ import MyButton from "../button/button";
 import MyInput from "../input/input";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {createUser, signIn} from "../../../store/reducers/ActionCreators";
-import {User} from "../../../../types/types";
+import {User} from "../../../types/types";
 import {userSlice} from "../../../store/reducers/UserSlice";
 
 interface formProps {

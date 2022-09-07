@@ -1,4 +1,4 @@
-import {User} from "../../../types/types";
+import {User} from "../../types/types";
 import {AppDispatch, RootState} from "../store";
 import {auth, refreshTokenRequest, registerUser} from "../../api/api";
 import {userSlice} from "./UserSlice";

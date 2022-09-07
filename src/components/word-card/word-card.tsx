@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './word-card.css';
-import {Word} from "../../../types/types";
+import {Word} from "../../types/types";
 import {server} from "../../consts/consts";
 import { FastAverageColor } from 'fast-average-color';
 import { AiFillSound } from 'react-icons/ai';

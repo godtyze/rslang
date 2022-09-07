@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {SingInRes} from "../../../types/types";
+import {SingInRes} from "../../types/types";
 
 export type UserState = {
   isAuth: boolean;

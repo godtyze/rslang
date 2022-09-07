@@ -1,4 +1,4 @@
-import {SingInRes, User} from "../../types/types";
+import {SingInRes, User} from "../types/types";
 import {paths} from "../consts/consts";
 
 export const registerUser = async (user: User) => {

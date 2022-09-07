@@ -5,7 +5,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import sprite from '../../assets/svg/sprite.svg';
 import Navigation from "./navigation";
 import WordList from "./word-list";
-import {glossaryParams, Word} from "../../../types/types";
+import {glossaryParams, Word} from "../../types/types";
 import {useFetching} from "../../hooks/useFetching";
 import PostService from "../../api/PostService";
 import Pagination from "../../components/UI/pagination/pagination";

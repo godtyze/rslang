@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import MyButton from "../../../components/UI/button/button";
-import {Word} from "../../../../types/types";
+import {Word} from "../../../types/types";
 import {useFetching} from "../../../hooks/useFetching";
 import PostService from "../../../api/PostService";
 import sprite from "../../../assets/svg/sprite.svg";
@@ -63,7 +63,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
     }
   }
 
-  const [fetchWords, error] = useFetching(async () => {
+  const [fetchWords] = useFetching(async () => {
     const words = await PostService.getWords(getRandomElement(29), diff);
     setUniqueWords(words);
     setWords(words);
