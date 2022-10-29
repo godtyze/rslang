@@ -36,6 +36,7 @@
   border: none;
   border-radius: unset;
   font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .register-button:hover {
@@ -69,7 +70,7 @@
     font-size: 13px;
   }
   .form-button {
-    left: 65px;
+    left: 80px;
   }
 }
 
@@ -83,7 +84,7 @@
 
   }
   .form-button {
-    left: 35px;
+    left: 50px;
   }
   .enter-button {
     margin-top: 10px;

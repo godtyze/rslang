@@ -38,8 +38,8 @@
 
 @media (max-width: 800px) {
   .register-form {
-    width: 150px;
-    height: 200px;
+    width: 180px;
+    min-height: 200px;
     border: 1px solid black;
     row-gap: 5px;
   }
@@ -47,8 +47,8 @@
 
 @media (max-width: 450px) {
   .register-form {
-    width: 90px;
-    height: 150px;
+    width: 120px;
+    min-height: 150px;
     border: 1px solid black;
     row-gap: 5px;
   }

@@ -31,7 +31,8 @@
 .card__header-details {
   display: flex;
   column-gap: 15px;
-  font-size: 22px;
+  font-size: 21px;
+  flex-wrap: wrap;
   align-items: center;
 }
 

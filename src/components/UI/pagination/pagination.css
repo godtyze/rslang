@@ -31,7 +31,6 @@
 }
 
 .arr-wrapper.page {
-  pointer-events: none;
   background-color: rgb(241, 205, 179);
 }
 

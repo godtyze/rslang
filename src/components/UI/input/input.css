@@ -17,7 +17,7 @@ input {
 
 @media (max-width: 800px) {
   .form-input {
-    width: 100px;
+    width: 140px;
   }
   input {
     font-size: 12px;
@@ -26,7 +26,7 @@ input {
 
 @media (max-width: 450px) {
   .form-input {
-    width: 60px;
+    width: 100px;
     height: 20px;
   }
   input {
