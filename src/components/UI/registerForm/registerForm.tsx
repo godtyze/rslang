@@ -92,6 +92,7 @@ const RegisterForm: React.FC<formProps> = ({onClick}) => {
               className='form-input'
               value={email}
               type='text'
+              autoComplete='off'
               placeholder='E-mail'/>
           {passwordDirty && passwordError && <div style={{color: 'red', fontSize: '13px', textAlign: 'center'}}>{passwordError}</div>}
           <MyInput

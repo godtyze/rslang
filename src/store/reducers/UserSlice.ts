@@ -11,7 +11,7 @@ export type UserState = {
   userId: string;
 }
 
-const initialUser = JSON.parse(localStorage.getItem('userData') as string);
+const initialUser: UserState | null = JSON.parse(localStorage.getItem('userData') as string);
 
 const initialState: UserState = {
   isAuth: !!initialUser?.token || false,

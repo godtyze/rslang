@@ -11,11 +11,11 @@ import PostService from "../../api/PostService";
 import Pagination from "../../components/UI/pagination/pagination";
 import Footer from "../../components/footer/footer";
 import MySelect from "../../components/UI/mySelect/mySelect";
-import Loader from "../../components/UI/Loader/loader";
+import Loader from "../../components/Loader/loader";
 
 
 const Glossary: React.FC = () => {
-  const [words, setWords] = useState<Array<Word>>([]);
+  const [words, setWords] = useState<Word[]>([]);
   const { group, page } = useParams<glossaryParams>();
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const Glossary: React.FC = () => {
 
   useEffect(() => {
     (fetchWords as (() => Promise<void>))();
-  }, [page, group]);
+  }, [group, page]);
 
 
   return (
@@ -46,7 +46,7 @@ const Glossary: React.FC = () => {
         {isWordsLoading
           ? <Loader/>
           : page && group && <div className='word__list'>
-            <MySelect onSelect={(group: number) => navigate(`/glossary/${group}/${page}`)} selectedGroup={+group}/>
+            <MySelect onSelect={(group: number) => navigate(`/glossary/${group}/1`)} selectedGroup={+group}/>
             <WordList words={words}/>
             <Pagination
                 page={+page}
