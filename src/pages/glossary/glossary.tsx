@@ -1,36 +1,33 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './glossary.css';
 import Header from "../../components/header/header";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import sprite from '../../assets/svg/sprite.svg';
 import Navigation from "./navigation";
 import WordList from "./word-list";
-import {glossaryParams, Word} from "../../types/types";
-import {useFetching} from "../../hooks/useFetching";
-import PostService from "../../api/PostService";
+import {glossaryParams} from "../../types/types";
 import Pagination from "../../components/UI/pagination/pagination";
 import Footer from "../../components/footer/footer";
 import MySelect from "../../components/UI/mySelect/mySelect";
 import Loader from "../../components/Loader/loader";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {loadWords} from "../../store/reducers/GlossaryActionCreators";
 
 
 const Glossary: React.FC = () => {
-  const [words, setWords] = useState<Word[]>([]);
-  const { group, page } = useParams<glossaryParams>();
+  const dispatch = useAppDispatch();
+  const {words, isLoading} = useAppSelector(state => state.glossaryReducer);
+  const {group, page} = useParams<glossaryParams>();
   const navigate = useNavigate();
 
-
-  const [fetchWords, isWordsLoading] = useFetching(async () => {
-    if (group && page) {
-      const words = await PostService.getWords(+page - 1, +group - 1);
-      setWords(words);
-    }
-  });
-
   useEffect(() => {
-    (fetchWords as (() => Promise<void>))();
-  }, [group, page]);
+    if (group && page && (+group > 6 || +page > 30)) {
+      navigate('/');
+      return;
+    }
 
+    if (group && page) dispatch(loadWords(+group - 1, +page - 1));
+  }, [group, page]);
 
   return (
     <div className='App glossary'>
@@ -43,7 +40,7 @@ const Glossary: React.FC = () => {
         <Navigation/>
       </Header>
       <div style={{flex: '1 0 auto', padding: '10px', display: 'flex', justifyContent: 'center'}}>
-        {isWordsLoading
+        {isLoading
           ? <Loader/>
           : page && group && <div className='word__list'>
             <MySelect onSelect={(group: number) => navigate(`/glossary/${group}/1`)} selectedGroup={+group}/>

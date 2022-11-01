@@ -38,3 +38,19 @@ export type SingInRes = {
   name: string;
   tokenExpire?: string;
 }
+
+export type UserState = {
+  isAuth: boolean;
+  isLoading: boolean;
+  error: string;
+  tokenExpire: string;
+  token: string;
+  refreshToken: string;
+  userId: string;
+}
+
+export type GlossaryState = {
+  words: Word[];
+  isLoading: boolean;
+  error: string;
+}

@@ -67,7 +67,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
 
   const [fetchWords] = useFetching(async () => {
     const randomPage = getRandomElement(26);
-    const words = await PostService.getWords(randomPage, diff);
+    const words = await PostService.getWords(diff, randomPage);
     setWords(words.concat(await PostService.getWords(randomPage + 1, diff)).concat(await PostService.getWords(randomPage + 2, diff)));
   });
 
