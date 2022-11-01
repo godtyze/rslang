@@ -1,12 +1,11 @@
 .main {
   display: flex;
   flex-direction: column;
-  max-width: 100%;
   width: 100%;
   background-size: cover;
   flex-grow: 1;
+  row-gap: 30px;
   justify-content: center;
-  height: auto;
   align-items: center;
 }
 
@@ -17,8 +16,7 @@
 }
 
 .auth-window {
-  display: flex;
-  align-items: center;
+  height: 280px;
 }
 
 .auth-wrapper {
@@ -34,7 +32,6 @@
 
 .games-wrapper {
   display: flex;
-  padding: 90px 0 0 0;
   column-gap: 20px;
   height: auto;
   flex-direction: column;
@@ -92,7 +89,6 @@
   width: 100%;
   font-size: 30px;
   font-family: cursive;
-  padding-top: 80px;
 }
 
 .profile-logo {
@@ -122,6 +118,10 @@
     text-align: justify;
   }
 
+  .auth-window {
+    height: 220px;
+  }
+
   .game {
     width: 100px;
     height: 130px;
@@ -132,6 +132,7 @@
     height: 70px;
     width: 70px;
   }
+
   .profile-logo {
     align-items: center;
     height: 70px;
@@ -139,10 +140,15 @@
     font-size: 16px;
   }
 
+  .games-wrapper {
+    padding-top: 0;
+  }
+
   .game-image {
     height: 70px;
     width: 70px;
   }
+
   .sprint-logo {
     height: 70px;
     width: 100px;
@@ -154,31 +160,38 @@
     height: 40px;
     width: 40px;
   }
+
   .profile-logo {
     align-items: center;
     height: 40px;
     width: 40px;
     font-size: 10px;
   }
+
   .about {
     font-size: 15px;
   }
+
   .game {
     width: 70px;
     height: 80px;
     font-size: 11px;
   }
+
   .game-image {
     height: 40px;
     width: 40px;
   }
+
   .sprint-logo {
     height: 40px;
     width: 70px;
   }
-  .games-wrapper {
-    padding-top: 0;
+
+  .auth-window {
+    height: 210px;
   }
+
   .game-wrapper {
     border: 1px solid black;
   }
