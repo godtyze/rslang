@@ -3,7 +3,7 @@ import Main from "../../pages/main/main";
 import Glossary from "../../pages/glossary/glossary";
 import AudioCall from "../../pages/games/audio-call/audio-call";
 import Sprint from "../../pages/games/sprint/sprint";
-import {useRoutes} from "react-router-dom";
+import {Navigate, useRoutes} from "react-router-dom";
 
 const AppRouter: React.FC = () => {
   const routes = useRoutes([
@@ -11,7 +11,7 @@ const AppRouter: React.FC = () => {
     {path: '/glossary/:group/:page', element: <Glossary/>},
     {path: '/audio-call', element: <AudioCall/>},
     {path: '/sprint', element: <Sprint/>},
-    {path: '*', element: <Main/>}
+    {path: '*', element: <Navigate to="/" replace />}
   ]);
 
   return (
