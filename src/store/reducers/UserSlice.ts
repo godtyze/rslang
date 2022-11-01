@@ -1,22 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {SingInRes} from "../../types/types";
-
-export type UserState = {
-  isAuth: boolean;
-  isLoading: boolean;
-  error: string;
-  tokenExpire: string;
-  token: string;
-  refreshToken: string;
-  userId: string;
-}
+import {SingInRes, UserState} from "../../types/types";
 
 const initialUser: UserState | null = JSON.parse(localStorage.getItem('userData') as string);
 
 const initialState: UserState = {
   isAuth: !!initialUser?.token || false,
   isLoading: false,
-  error:  '',
+  error: '',
   tokenExpire: initialUser?.tokenExpire || '',
   token: initialUser?.token || '',
   userId: initialUser?.userId || '',

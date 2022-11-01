@@ -3,46 +3,47 @@ import {AppDispatch, RootState} from "../store";
 import {auth, refreshTokenRequest, registerUser} from "../../api/api";
 import {userSlice} from "./UserSlice";
 import moment from 'moment';
-import {expireTime, refreshTime} from "../../consts/consts";
+import {refreshTime} from "../../consts/consts";
+import {getErrorMessage, getNextExpireTime} from "../../utils/utils";
 
-const getNextExpireTime = () => moment().add(expireTime, 'hours').toISOString();
-
-const getErrorMessage = (error: unknown) => {
-  if (error instanceof Error) return error.message;
-  return String(error);
-}
+const {userCreate,
+  userCreateSuccess,
+  userCreateError,
+  userSignIn,
+  userSignSuccess,
+  userSignError,
+  userSignOut} = userSlice.actions;
 
 export const createUser = (user: User) => async (dispatch: AppDispatch) => {
   try {
-    dispatch(userSlice.actions.userCreate());
+    dispatch(userCreate());
     const res = await registerUser(user);
     if (res.ok) {
       await dispatch(signIn(user));
     } else {
       throw new Error('Пользователь с данным e-mail уже существует');
     }
-    dispatch(userSlice.actions.userCreateSuccess());
+    dispatch(userCreateSuccess());
   } catch (e) {
-    dispatch(userSlice.actions.userCreateError(getErrorMessage(e)));
+    dispatch(userCreateError(getErrorMessage(e)));
   }
 };
 
 export const signIn = (user: User) => async (dispatch: AppDispatch) => {
   try {
-    dispatch(userSlice.actions.userSignIn());
+    dispatch(userSignIn());
     const res = await auth(user);
     const userData = {...res, tokenExpire: getNextExpireTime()}
-    console.log(userData.tokenExpire);
     localStorage.setItem('userData', JSON.stringify(userData));
-    dispatch(userSlice.actions.userSignSuccess(userData));
+    dispatch(userSignSuccess(userData));
   } catch (e) {
-    dispatch(userSlice.actions.userSignError('Неправильный e-mail или пароль'));
+    dispatch(userSignError('Неправильный e-mail или пароль'));
   }
 };
 
 export const signOut = () => async (dispatch: AppDispatch) => {
   try {
-    dispatch(userSlice.actions.userSignOut());
+    dispatch(userSignOut());
     localStorage.removeItem('userData');
   } catch {
 
@@ -61,8 +62,7 @@ export const checkAuth = () => async (dispatch: AppDispatch, getState: () => Roo
           ...JSON.parse(localStorage.getItem('userData') as string),
           ...userData
         }));
-       dispatch(userSlice.actions.userSignSuccess(userData));
-       console.log('check!');
+       dispatch(userSignSuccess(userData));
        return userData.token;
       }
       return token;
