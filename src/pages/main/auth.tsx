@@ -3,7 +3,7 @@ import MyButton from "../../components/UI/button/button";
 import RegisterForm from "../../components/UI/registerForm/registerForm";
 import {CSSTransition} from "react-transition-group";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {signOut} from "../../store/reducers/ActionCreators";
+import {signOut} from "../../store/reducers/UserActionCreators";
 
 
 const Auth: React.FC = () => {
