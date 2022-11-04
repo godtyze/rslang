@@ -21,8 +21,13 @@ const Glossary: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (group && page && (+group > 6 || +page > 30)) {
-      navigate('/');
+    if (isNaN(Number(group)) || isNaN(Number(page))) {
+      navigate('/glossary/1/1');
+      return;
+    }
+
+    if (group && page && (+group > 6 || +page < 1 || +page > 30)) {
+      navigate('/glossary/1/1');
       return;
     }
 
