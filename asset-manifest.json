@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/rslang/static/css/main.ede9272d.css",
-    "main.js": "/rslang/static/js/main.2a93b837.js",
+    "main.js": "/rslang/static/js/main.1022bb59.js",
     "static/css/897.c4418b8d.chunk.css": "/rslang/static/css/897.c4418b8d.chunk.css",
     "static/js/897.b0b31a1f.chunk.js": "/rslang/static/js/897.b0b31a1f.chunk.js",
     "static/js/106.1e2ee429.chunk.js": "/rslang/static/js/106.1e2ee429.chunk.js",
@@ -17,13 +17,13 @@
     "index.html": "/rslang/index.html",
     "static/media/sprite.svg": "/rslang/static/media/sprite.3058e2193d0b0035224e9981faf1c842.svg",
     "main.ede9272d.css.map": "/rslang/static/css/main.ede9272d.css.map",
-    "main.2a93b837.js.map": "/rslang/static/js/main.2a93b837.js.map",
+    "main.1022bb59.js.map": "/rslang/static/js/main.1022bb59.js.map",
     "897.c4418b8d.chunk.css.map": "/rslang/static/css/897.c4418b8d.chunk.css.map",
     "897.b0b31a1f.chunk.js.map": "/rslang/static/js/897.b0b31a1f.chunk.js.map",
     "106.1e2ee429.chunk.js.map": "/rslang/static/js/106.1e2ee429.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ede9272d.css",
-    "static/js/main.2a93b837.js"
+    "static/js/main.1022bb59.js"
   ]
 }
