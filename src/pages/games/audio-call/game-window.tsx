@@ -10,6 +10,7 @@ import glossaryLink from '../../../assets/png/books.png';
 import voiceLink from '../../../assets/png/voice-icon.png';
 import correctAnswer from '../../../assets/png/correctans.png';
 import wrongAnswer from '../../../assets/png/wrongans.png';
+import {server} from '../../../consts/consts'
 
 interface gameProps {
   diff: number;
@@ -37,7 +38,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
     array.splice(random, 1);
     randomWords.push(randomWord.wordTranslate);
     randomAudios.push(randomWord.audio);
-    playAudio(`https://react-words-example.herokuapp.com/${randomAudios[randomAudios.length - 1]}`);
+    playAudio(`${server}${randomAudios[randomAudios.length - 1]}`);
     setTargetAnswer([...targetAnswer, randomWord.wordTranslate]);
     while (randomWords.length < 4) {
       let random = getRandomElement(19);
@@ -120,7 +121,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
               {words.map(el => (targetAnswer.indexOf(el.wordTranslate) !== -1 || answers.indexOf(`${el.wordTranslate}-`) !== -1)
                   ? <div className='result-list__item' key={el.id}>
                     <img style={{cursor: 'pointer'}}
-                         onClick={() => playAudio(`https://react-words-example.herokuapp.com/${el.audio}`)}
+                         onClick={() => playAudio(`${server}${el.audio}`)}
                          key={el.audio} src={voiceLink}
                          height='30px'
                          width='30px'

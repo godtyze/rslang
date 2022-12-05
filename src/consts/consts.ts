@@ -1,4 +1,4 @@
-export const server = 'https://react-words-example.herokuapp.com/';
+export const server = 'https://rs-lang-rqoa.onrender.com/';
 
 export const paths = {
   words: `${server}words`,
