@@ -53,4 +53,6 @@ export type GlossaryState = {
   words: Word[];
   isLoading: boolean;
   error: string;
+  currentPage: number;
+  currentGroup: number;
 }

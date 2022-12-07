@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import AppRouter from "./components/app-router/app-router";
-import {checkAuth, signOut} from "./store/reducers/UserActionCreators";
+import {checkAuth, signOut} from "./store/actions-creators/UserActionCreators";
 import {useAppDispatch, useAppSelector} from "./hooks/redux";
 
 const App = () => {

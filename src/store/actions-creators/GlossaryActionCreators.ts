@@ -1,4 +1,4 @@
-import {glossarySlice} from "./GlossarySlice";
+import {glossarySlice} from "../reducers/GlossarySlice";
 import {AppDispatch} from "../store";
 import PostService from "../../api/PostService";
 
@@ -12,4 +12,8 @@ export const loadWords = (group: number, page: number) => async (dispatch: AppDi
   } catch (e) {
     dispatch(wordsLoadingError('Произошла ошибка при загрузке страницы'));
   }
+}
+
+export const glossaryAsyncActionCreators = {
+  loadWords
 }

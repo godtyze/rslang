@@ -3,11 +3,10 @@ import './registerForm.css'
 import '../input/input.css'
 import MyButton from "../button/button";
 import MyInput from "../input/input";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {createUser, signIn} from "../../../store/reducers/UserActionCreators";
+import {useAppSelector} from "../../../hooks/redux";
 import {User} from "../../../types/types";
-import {userSlice} from "../../../store/reducers/UserSlice";
 import Loader from "../../Loader/loader";
+import {useActions} from "../../../hooks/useActions";
 
 interface formProps {
   onClick?: () => void;
@@ -22,7 +21,7 @@ const RegisterForm: React.FC<formProps> = ({onClick}) => {
   const [passwordError, setPasswordError] = useState<string>('Пароль не может быть пустым');
   const [formValid, setFormValid] = useState<boolean>(false);
 
-  const dispatch = useAppDispatch();
+  const {createUser, signIn, userSignError} = useActions();
   const {error, isLoading, isAuth} = useAppSelector(state => state.userReducer);
 
   useEffect(() => {
@@ -68,9 +67,9 @@ const RegisterForm: React.FC<formProps> = ({onClick}) => {
 
   const handleAuth = (user: User, type: string) => {
     if (type === 'register') {
-      dispatch(createUser({email: user.email, password: user.password}));
+      createUser({email: user.email, password: user.password});
     } else {
-      dispatch(signIn({email: user.email, password: user.password}));
+      signIn({email: user.email, password: user.password});
     }
   };
 
@@ -84,7 +83,7 @@ const RegisterForm: React.FC<formProps> = ({onClick}) => {
         : <div className='register-form__wrapper'>
           <MyButton className={'btn form-button'} onClick={() => {
             if (onClick) onClick()
-            dispatch(userSlice.actions.userSignError(''));
+            userSignError('');
           }} visible={true}>
             X
           </MyButton>

@@ -4,7 +4,9 @@ import {GlossaryState, Word} from "../../types/types";
 const initialState: GlossaryState = {
   words: [],
   isLoading: false,
-  error: ''
+  error: '',
+  currentGroup: 1,
+  currentPage: 1
 };
 
 export const glossarySlice = createSlice({
@@ -22,6 +24,12 @@ export const glossarySlice = createSlice({
       state.isLoading = false;
       state.error = '';
       state.words = action.payload;
+    },
+    setGroup(state, action: PayloadAction<number>) {
+      state.currentGroup = action.payload;
+    },
+    setPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
     }
   }
 });

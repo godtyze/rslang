@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import MyButton from "../../components/UI/button/button";
 import RegisterForm from "../../components/UI/registerForm/registerForm";
 import {CSSTransition} from "react-transition-group";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {signOut} from "../../store/reducers/UserActionCreators";
+import {useAppSelector} from "../../hooks/redux";
+import {useActions} from "../../hooks/useActions";
 
 
 const Auth: React.FC = () => {
   const [showButton, setShowButton] = useState<boolean>(true);
   const [showForm, setShowForm] = useState<boolean>(false);
   const {isAuth} = useAppSelector(state => state.userReducer);
-  const dispatch = useAppDispatch();
+  const {signOut} = useActions();
 
   return (
     <div className='auth-window'>
@@ -19,7 +19,7 @@ const Auth: React.FC = () => {
               className={'btn login-button'}
               onClick={() => {
                 setShowForm(true);
-                if (isAuth) dispatch(signOut());
+                if (isAuth) signOut();
               }}
               visible={showButton}>
           {isAuth ? 'Выйти' : 'Вход / Регистрация'}

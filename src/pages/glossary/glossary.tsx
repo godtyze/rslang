@@ -10,13 +10,13 @@ import Pagination from "../../components/UI/pagination/pagination";
 import Footer from "../../components/footer/footer";
 import MySelect from "../../components/UI/mySelect/mySelect";
 import Loader from "../../components/Loader/loader";
-import {useAppDispatch, useAppSelector} from "../../hooks/redux";
-import {loadWords} from "../../store/reducers/GlossaryActionCreators";
+import {useAppSelector} from "../../hooks/redux";
+import {useActions} from "../../hooks/useActions";
 
 
 const Glossary: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const {words, isLoading} = useAppSelector(state => state.glossaryReducer);
+  const {words, isLoading, currentGroup, currentPage} = useAppSelector(state => state.glossaryReducer);
+  const {setPage, setGroup, loadWords} = useActions();
   const {group, page} = useParams<glossaryParams>();
   const navigate = useNavigate();
 
@@ -31,7 +31,11 @@ const Glossary: React.FC = () => {
       return;
     }
 
-    if (group && page) dispatch(loadWords(+group - 1, +page - 1));
+    if (group && page) {
+      setGroup(+group);
+      setPage(+page);
+      loadWords(+group - 1, +page - 1);
+    }
   }, [group, page]);
 
   return (
@@ -48,15 +52,30 @@ const Glossary: React.FC = () => {
         {isLoading
           ? <Loader/>
           : page && group && <div className='word__list'>
-            <MySelect onSelect={(group: number) => navigate(`/glossary/${group}/1`)} selectedGroup={+group}/>
-            <WordList words={words}/>
-            <Pagination
-                page={+page}
-                onClickNext={() => navigate(`/glossary/${group}/${+page + 1}`)}
-                onClickPrev={() => navigate(`/glossary/${group}/${+page - 1}`)}
-                onClickFirst={() => navigate(`/glossary/${group}/1`)}
-                onClickLast={() => navigate(`/glossary/${group}/30`)}
-            />
+          <MySelect onSelect={(group: number) => {
+            setGroup(group);
+            navigate(`/glossary/${group}/1`);
+          }} selectedGroup={+group}/>
+          <WordList words={words}/>
+          <Pagination
+            page={currentPage}
+            onClickNext={() => {
+              setPage(currentPage + 1);
+              navigate(`/glossary/${currentGroup}/${currentPage + 1}`);
+            }}
+            onClickPrev={() => {
+              setPage(currentPage - 1);
+              navigate(`/glossary/${currentGroup}/${currentPage - 1}`);
+            }}
+            onClickFirst={() => {
+              setPage(1);
+              navigate(`/glossary/${currentGroup}/1`);
+            }}
+            onClickLast={() => {
+              setPage(30);
+              navigate(`/glossary/${currentGroup}/30`);
+            }}
+          />
         </div>
         }
       </div>

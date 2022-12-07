@@ -1,7 +1,7 @@
 import {User} from "../../types/types";
 import {AppDispatch, RootState} from "../store";
 import {auth, refreshTokenRequest, registerUser} from "../../api/api";
-import {userSlice} from "./UserSlice";
+import {userSlice} from "../reducers/UserSlice";
 import moment from 'moment';
 import {refreshTime} from "../../consts/consts";
 import {getErrorMessage, getNextExpireTime} from "../../utils/utils";
@@ -72,3 +72,10 @@ export const checkAuth = () => async (dispatch: AppDispatch, getState: () => Roo
     console.log(getErrorMessage(e));
   }
 };
+
+export const userAsyncActionCreators = {
+  createUser,
+  signIn,
+  signOut,
+  checkAuth
+}
