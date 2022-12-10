@@ -3,7 +3,7 @@ import './glossary.css';
 import Header from "../../components/header/header";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import sprite from '../../assets/svg/sprite.svg';
-import Navigation from "./navigation";
+import Navigation from "../../components/navigation";
 import WordList from "./word-list";
 import {glossaryParams} from "../../types/types";
 import Pagination from "../../components/UI/pagination/pagination";

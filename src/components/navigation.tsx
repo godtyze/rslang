@@ -1,7 +1,7 @@
 import React from 'react';
-import GameLink from "../main/game-link";
-import audioCallImg from "../../assets/png/speaker.png";
-import sprintImg from "../../assets/png/sprint.png";
+import GameLink from "../pages/main/game-link";
+import audioCallImg from "../assets/png/speaker.png";
+import sprintImg from "../assets/png/sprint.png";
 
 
 const Navigation: React.FC = () => {

@@ -40,11 +40,11 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
   const [time, setTime] = useState<number>(60);
 
   const pushRandomTranslate = (words: Word[]) => {
-    setCurrentWord(words[targetAnswer]?.word)
+    setCurrentWord(words[targetAnswer].word)
     const random = getRandomElement(2);
     if (random === 1) {
-      setCurrentWordTranslate(words[targetAnswer]?.wordTranslate);
-    } else setCurrentWordTranslate(words[getRandomElement(59)]?.wordTranslate);
+      setCurrentWordTranslate(words[targetAnswer].wordTranslate);
+    } else setCurrentWordTranslate(words[getRandomElement(59)].wordTranslate);
   }
 
   const answerHandler = (ans: string) => {
