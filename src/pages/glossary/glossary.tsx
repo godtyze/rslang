@@ -48,7 +48,7 @@ const Glossary: React.FC = () => {
         </Link>
         <Navigation/>
       </Header>
-      <div style={{flex: '1 0 auto', padding: '10px', display: 'flex', justifyContent: 'center'}}>
+      <div className='words__wrapper'>
         {isLoading
           ? <Loader/>
           : page && group && <div className='word__list'>
