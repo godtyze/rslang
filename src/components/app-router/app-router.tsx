@@ -1,7 +1,5 @@
 import React from 'react';
 import Main from "../../pages/main/main";
-import AudioCall from "../../pages/games/audio-call/audio-call";
-import Sprint from "../../pages/games/sprint/sprint";
 import {Navigate, useRoutes} from "react-router-dom";
 import Loader from "../Loader/loader";
 import Auth from "../../pages/auth/auth";
@@ -10,6 +8,8 @@ import {useAppSelector} from "../../hooks/redux";
 import {RouteNames} from "../../consts/consts";
 
 const Glossary = React.lazy(() => import('../../pages/glossary/glossary'));
+const AudioCall = React.lazy(() => import('../../pages/games/audio-call/audio-call'));
+const Sprint = React.lazy(() => import('../../pages/games/sprint/sprint'));
 
 const publicRoutes: Route[] = [
   {path: RouteNames.main, element: <Main/>},
@@ -18,23 +18,35 @@ const publicRoutes: Route[] = [
         <Glossary/>
       </React.Suspense>
   },
-  {path: RouteNames.audioCall, element: <AudioCall/>},
-  {path: RouteNames.sprint, element: <Sprint/>},
+  {path: RouteNames.audioCall, element:
+      <React.Suspense fallback={<div className='loader-wrapper'><Loader/></div>}>
+        <AudioCall/>
+      </React.Suspense>},
+  {path: RouteNames.sprint, element:
+      <React.Suspense fallback={<div className='loader-wrapper'><Loader/></div>}>
+        <Sprint/>
+      </React.Suspense>},
   {path: RouteNames.login, element: <Auth/>},
   {path: RouteNames.register, element: <Auth/>},
   {path: RouteNames.error, element: <Navigate to="/" replace />}
 ];
 
 const privateRoutes: Route[] = [
-  {path: '/', element: <Main/>},
-  {path: '/glossary/:group/:page', element:
+  {path: RouteNames.main, element: <Main/>},
+  {path: RouteNames.glossary, element:
       <React.Suspense fallback={<div className='loader-wrapper'><Loader/></div>}>
         <Glossary/>
       </React.Suspense>
   },
-  {path: '/audio-call', element: <AudioCall/>},
-  {path: '/sprint', element: <Sprint/>},
-  {path: '*', element: <Navigate to="/" replace />}
+  {path: RouteNames.audioCall, element:
+      <React.Suspense fallback={<div className='loader-wrapper'><Loader/></div>}>
+        <AudioCall/>
+      </React.Suspense>},
+  {path: RouteNames.sprint, element:
+      <React.Suspense fallback={<div className='loader-wrapper'><Loader/></div>}>
+        <Sprint/>
+      </React.Suspense>},
+  {path: RouteNames.error, element: <Navigate to="/" replace />}
 ];
 
 const AppRouter: React.FC = () => {
