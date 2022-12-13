@@ -38,9 +38,12 @@ export const signIn = (user: User) => async (dispatch: AppDispatch) => {
     dispatch(userSignSuccess(userData));
   } catch (e) {
     if (getErrorMessage(e).includes('Forbidden')) {
-      dispatch(userSignError('Неправильный e-mail или пароль'));
+      dispatch(userSignError('Неправильный e-mail или пароль!'));
+      return;
+    } else if (getErrorMessage(e).includes('Couldn\'t')) {
+      dispatch(userSignError('Пользователь с таким e-mail не найден!'));
     } else {
-      dispatch(userSignError('Сервер не отвечает'));
+      dispatch(userSignError('Сервер не отвечает!'));
     }
   }
 };

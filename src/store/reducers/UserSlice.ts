@@ -54,6 +54,9 @@ export const userSlice = createSlice({
       state.token = '';
       state.userId = '';
       state.refreshToken = '';
+    },
+    setUserError(state, action: PayloadAction<string>) {
+      state.error = action.payload;
     }
   }
 });
