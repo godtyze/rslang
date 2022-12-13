@@ -2,6 +2,7 @@
   display: flex;
   padding: 20px;
   align-items: center;
+  width: 100%;
 }
 
 .header__link-icon {
@@ -24,6 +25,10 @@
 @media (max-width: 390px) {
   .header {
     flex-direction: column;
+  }
+
+  .header.login {
+    flex-direction: row;
   }
 
   .header__nav {

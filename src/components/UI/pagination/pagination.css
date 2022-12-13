@@ -23,6 +23,8 @@
   border-radius: 100px;
   transition: all ease-in-out 0.2s;
   background: transparent;
+  text-align: center;
+  outline: none;
 }
 
 .arr-wrapper:hover {
