@@ -1,14 +1,14 @@
-import {paths} from "../consts/consts";
+import {serverRoutes} from "../consts/consts";
 import {SingInRes, User, Word} from "../types/types";
 
 export default class PostService {
   static async getWords(group = 0, page = 0): Promise<Word[]> {
-    const response = await fetch(`${paths.words}?group=${group}&page=${page}`);
+    const response = await fetch(`${serverRoutes.words}?group=${group}&page=${page}`);
     return await response.json();
   }
 
   static async registerUser(user: User) {
-    return await fetch(`${paths.users}`, {
+    return await fetch(`${serverRoutes.users}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -19,7 +19,7 @@ export default class PostService {
   }
 
   static async auth(user: User): Promise<SingInRes> {
-    const response = await fetch(`${paths.signIn}`, {
+    const response = await fetch(`${serverRoutes.signIn}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -32,7 +32,7 @@ export default class PostService {
   }
 
   static async refreshTokenRequest(token: string, id: string): Promise<SingInRes> {
-    const res = await fetch(`${paths.users}/${id}/tokens`, {
+    const res = await fetch(`${serverRoutes.users}/${id}/tokens`, {
       method: 'GET',
       credentials: 'include',
       headers: {
