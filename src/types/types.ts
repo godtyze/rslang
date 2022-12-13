@@ -1,3 +1,5 @@
+import React from "react";
+
 export type Word = {
   id: string;
   group: number;
@@ -25,11 +27,6 @@ export type User = {
   password: string;
 }
 
-export type registerRes = {
-  id: string;
-  email: string;
-}
-
 export type SingInRes = {
   message: string;
   token: string;
@@ -55,4 +52,9 @@ export type GlossaryState = {
   error: string;
   currentPage: number;
   currentGroup: number;
+}
+
+export type Route = {
+  path: string;
+  element: React.ReactNode;
 }
