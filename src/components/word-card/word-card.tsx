@@ -3,7 +3,7 @@ import './word-card.css';
 import {Word} from "../../types/types";
 import {server} from "../../consts/consts";
 import { FastAverageColor } from 'fast-average-color';
-import { AiFillSound } from 'react-icons/ai';
+import SoundIcon from "../UI/sound-icon/sound-icon";
 
 type wordCardProps = Omit<Word, 'id' | 'page' | 'group'>;
 type averageColor = {
@@ -72,7 +72,7 @@ const WordCard: React.FC<wordCardProps> = ({word,
           <div className='card__header-details'>
             <span>{wordTranslate}</span>
             <span>{transcription}</span>
-            <AiFillSound onClick={() => playWord(audio, 1)} style={{cursor: 'pointer'}}/>
+            <SoundIcon onClick={() => playWord(audio, 1)}/>
           </div>
         </div>
       </div>

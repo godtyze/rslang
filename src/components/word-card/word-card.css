@@ -1,5 +1,6 @@
 .word__card {
-  width: 370px;
+  max-width: 370px;
+  width: 100%;
   border-radius: 25px;
   box-shadow: 0 1px 2px 1px rgb(0 0 0 / 30%), 0 2px 4px 1px rgb(0 0 0 / 25%), 0 2px 8px 2px rgb(0 0 0 / 20%), 0 4px 16px 4px rgb(0 0 0 / 15%);
   font-size: 17px;
@@ -57,7 +58,7 @@
 
 @media (max-width: 800px) {
   .word__card {
-    width: 220px
+    max-width: 220px
   }
   .card__main {
     height: 150px;
@@ -74,21 +75,3 @@
   }
 }
 
-@media (max-width: 450px) {
-  .word__card {
-    width: 150px
-  }
-  .card__main {
-    height: 100px;
-  }
-  .card__description {
-    font-size: 10px;
-    padding: 10px;
-  }
-  .card__header {
-    font-size: 20px;
-  }
-  .card__header-details {
-    font-size: 15px;
-  }
-}

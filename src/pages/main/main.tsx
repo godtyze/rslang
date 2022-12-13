@@ -8,6 +8,7 @@ import MyButton from "../../components/UI/button/button";
 import {useNavigate} from "react-router-dom";
 import {useActions} from "../../hooks/useActions";
 import {RouteNames} from "../../consts/consts";
+import Header from "../../components/header/header";
 
 
 const Main: React.FC = () => {
@@ -17,7 +18,7 @@ const Main: React.FC = () => {
 
   return (
     <div className='App'>
-      <header className='main-header'>
+      <Header className='main-header'>
         <MyButton
           className={'btn login-button'}
           onClick={() => {
@@ -37,7 +38,7 @@ const Main: React.FC = () => {
             <span>Профиль</span>
           </div>
         }
-      </header>
+      </Header>
       <main className='main'>
         <Games/>
         <div className='about'>
