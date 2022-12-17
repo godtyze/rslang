@@ -1,7 +1,7 @@
 {
   "name": "rslang",
   "version": "0.1.0",
-  "homepage": "/rslang",
+  "homepage": "https://godtyze.github.io/rslang",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",

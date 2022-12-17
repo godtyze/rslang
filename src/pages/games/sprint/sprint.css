@@ -2,6 +2,17 @@
   background-image: url("../../../assets/jpg/sprint-bg.jpg");
   background-position: center;
   background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1920px;
+  width: 100%;
+}
+
+.blur {
+  filter: blur(4px);
 }
 
 .game-window {
@@ -14,6 +25,81 @@
   background: rgb(80 80 80 / 75%);
   border-radius: 10px;
   row-gap: 4em;
+}
+
+.start-window {
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  box-shadow: 2px 2px black;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  display: flex;
+  height: 300px;
+  width: 500px;
+  background-color: #ecec2c;
+  border-radius: 10px;
+}
+
+.game-button {
+  border: none;
+  background: none;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  font-size: 35px;
+  font-family: cursive;
+  cursor: pointer;
+}
+
+.game-button:hover {
+  color: #ff3e15;
+}
+
+
+.game-title {
+  padding: 10px 0 10px 0;
+  font-family: cursive;
+  font-size: 35px;
+  color: #ff0074;
+}
+
+.game-text {
+  padding: 0 15px 0 15px;
+  font-family: cursive;
+  font-size: 20px;
+  color: #ff213b;
+  text-align: justify;
+}
+
+.audio {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+.audio:hover {
+  background-color: #ff3e15;
+}
+
+.btn-wrapper {
+  padding-top: 20px;
+  justify-content: space-between;
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+}
+
+.game-button {
+  border: none;
+  background: none;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  font-size: 35px;
+  font-family: cursive;
+  cursor: pointer;
 }
 
 .sprint-btn {

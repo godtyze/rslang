@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import MyButton from "../../../components/UI/button/button";
 import GameWindow from "./game-window";
 import DifficultyWindow from "./difficulty-window";
@@ -20,7 +20,7 @@ const SprintMain = () => {
         {startGame
             && <GameWindow diff={difficulty - 1}/>
         }
-        <div style={{display: startGame ? 'none' : 'flex'}} className='main-window blur sprint'>
+        <div style={{display: startGame ? 'none' : 'flex'}} className='blur sprint'>
         </div>
         <DifficultyWindow visible={!startGame} children={
           <div className='btn-wrapper'>
