@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/rslang/static/css/main.fea01349.css",
-    "main.js": "/rslang/static/js/main.95e3c616.js",
+    "main.js": "/rslang/static/js/main.f0a04f0f.js",
     "static/css/955.18eabb0c.chunk.css": "/rslang/static/css/955.18eabb0c.chunk.css",
     "static/js/955.3668b989.chunk.js": "/rslang/static/js/955.3668b989.chunk.js",
     "static/css/336.bddb52e1.chunk.css": "/rslang/static/css/336.bddb52e1.chunk.css",
-    "static/js/336.6f66ea0d.chunk.js": "/rslang/static/js/336.6f66ea0d.chunk.js",
+    "static/js/336.27042e14.chunk.js": "/rslang/static/js/336.27042e14.chunk.js",
     "static/css/282.ad754bd1.chunk.css": "/rslang/static/css/282.ad754bd1.chunk.css",
-    "static/js/282.6c0e50d3.chunk.js": "/rslang/static/js/282.6c0e50d3.chunk.js",
+    "static/js/282.bb67b14e.chunk.js": "/rslang/static/js/282.bb67b14e.chunk.js",
     "static/js/536.f106347f.chunk.js": "/rslang/static/js/536.f106347f.chunk.js",
     "static/media/audio-bg.jpg": "/rslang/static/media/audio-bg.fbce15898a35987ecf8d.jpg",
     "static/media/main-background.jpg": "/rslang/static/media/main-background.7e919947f19f3e67beef.jpg",
@@ -21,17 +21,17 @@
     "index.html": "/rslang/index.html",
     "static/media/sprite.svg": "/rslang/static/media/sprite.3058e2193d0b0035224e9981faf1c842.svg",
     "main.fea01349.css.map": "/rslang/static/css/main.fea01349.css.map",
-    "main.95e3c616.js.map": "/rslang/static/js/main.95e3c616.js.map",
+    "main.f0a04f0f.js.map": "/rslang/static/js/main.f0a04f0f.js.map",
     "955.18eabb0c.chunk.css.map": "/rslang/static/css/955.18eabb0c.chunk.css.map",
     "955.3668b989.chunk.js.map": "/rslang/static/js/955.3668b989.chunk.js.map",
     "336.bddb52e1.chunk.css.map": "/rslang/static/css/336.bddb52e1.chunk.css.map",
-    "336.6f66ea0d.chunk.js.map": "/rslang/static/js/336.6f66ea0d.chunk.js.map",
+    "336.27042e14.chunk.js.map": "/rslang/static/js/336.27042e14.chunk.js.map",
     "282.ad754bd1.chunk.css.map": "/rslang/static/css/282.ad754bd1.chunk.css.map",
-    "282.6c0e50d3.chunk.js.map": "/rslang/static/js/282.6c0e50d3.chunk.js.map",
+    "282.bb67b14e.chunk.js.map": "/rslang/static/js/282.bb67b14e.chunk.js.map",
     "536.f106347f.chunk.js.map": "/rslang/static/js/536.f106347f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fea01349.css",
-    "static/js/main.95e3c616.js"
+    "static/js/main.f0a04f0f.js"
   ]
 }
