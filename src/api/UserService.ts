@@ -1,12 +1,7 @@
+import {SingInRes, User} from "../types/types";
 import {serverRoutes} from "../consts/consts";
-import {SingInRes, User, Word} from "../types/types";
 
-export default class PostService {
-  static async getWords(group = 0, page = 0): Promise<Word[]> {
-    const response = await fetch(`${serverRoutes.words}?group=${group}&page=${page}`);
-    return await response.json();
-  }
-
+export default class UserService {
   static async registerUser(user: User) {
     return await fetch(`${serverRoutes.users}`, {
       method: 'POST',

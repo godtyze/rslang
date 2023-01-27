@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import MyButton from "../../../components/UI/button/button";
 import {Word} from "../../../types/types";
 import {useFetching} from "../../../hooks/useFetching";
-import PostService from "../../../api/PostService";
 import sprite from "../../../assets/svg/sprite.svg";
 import {Link} from "react-router-dom";
 import {getRandomElement, playAudio, shuffle} from "../../../utils/utils";
@@ -11,6 +10,7 @@ import voiceLink from '../../../assets/png/voice-icon.png';
 import correctAnswer from '../../../assets/png/correctans.png';
 import wrongAnswer from '../../../assets/png/wrongans.png';
 import {server} from '../../../consts/consts'
+import WordsService from "../../../api/WordsService";
 
 interface gameProps {
   diff: number;
@@ -65,7 +65,7 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
   }
 
   const [fetchWords] = useFetching(async () => {
-    const words = await PostService.getWords(diff, getRandomElement(29));
+    const words = await WordsService.getWords(diff, getRandomElement(29));
     setUniqueWords(words);
     setWords(words);
     setRandomWords(createRandomWords(words));

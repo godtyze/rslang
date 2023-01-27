@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import MyButton from "../../../components/UI/button/button";
 import {Word} from "../../../types/types";
 import {useFetching} from "../../../hooks/useFetching";
-import PostService from "../../../api/PostService";
 import sprite from "../../../assets/svg/sprite.svg";
 import {Link} from "react-router-dom";
 import {getRandomElement, playAudio} from "../../../utils/utils";
@@ -14,6 +13,7 @@ import streak4 from '../../../assets/png/4.png'
 import voiceLink from "../../../assets/png/voice-icon.png";
 import correctAnswer from "../../../assets/png/correctans.png";
 import wrongAnswer from "../../../assets/png/wrongans.png";
+import WordsService from "../../../api/WordsService";
 
 const btnArr = [{text: '❮ Не верно', class: 'wrong'}, {text: 'Верно ❯', class: 'right'}]
 
@@ -67,8 +67,8 @@ const GameWindow: React.FC<gameProps> = ({diff}) => {
 
   const [fetchWords] = useFetching(async () => {
     const randomPage = getRandomElement(26);
-    const words = await PostService.getWords(diff, randomPage);
-    setWords(words.concat(await PostService.getWords(randomPage + 1, diff)).concat(await PostService.getWords(randomPage + 2, diff)));
+    const words = await WordsService.getWords(diff, randomPage);
+    setWords(words.concat(await WordsService.getWords(randomPage + 1, diff)).concat(await WordsService.getWords(randomPage + 2, diff)));
   });
 
 

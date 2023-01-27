@@ -4,7 +4,7 @@ import {userSlice} from "../reducers/UserSlice";
 import moment from 'moment';
 import {refreshTime} from "../../consts/consts";
 import {getErrorMessage, getNextExpireTime} from "../../utils/utils";
-import PostService from "../../api/PostService";
+import UserService from "../../api/UserService";
 
 const {userCreate,
   userCreateSuccess,
@@ -17,7 +17,7 @@ const {userCreate,
 export const createUser = (user: User) => async (dispatch: AppDispatch) => {
   try {
     dispatch(userCreate());
-    const res = await PostService.registerUser(user);
+    const res = await UserService.registerUser(user);
     if (res.ok) {
       await dispatch(signIn(user));
     } else {
@@ -32,7 +32,7 @@ export const createUser = (user: User) => async (dispatch: AppDispatch) => {
 export const signIn = (user: User) => async (dispatch: AppDispatch) => {
   try {
     dispatch(userSignIn());
-    const res = await PostService.auth(user);
+    const res = await UserService.auth(user);
     const userData = {...res, tokenExpire: getNextExpireTime()}
     localStorage.setItem('userData', JSON.stringify(userData));
     dispatch(userSignSuccess(userData));
@@ -63,7 +63,7 @@ export const checkAuth = () => async (dispatch: AppDispatch, getState: () => Roo
     const timeToRefresh = moment(tokenExpire).subtract(refreshTime, 'hours');
     if(moment().isBefore(tokenExpire)) {
       if (moment().isAfter(timeToRefresh)) {
-       const res = await PostService.refreshTokenRequest(refreshToken, userId);
+       const res = await UserService.refreshTokenRequest(refreshToken, userId);
        const userData = {...res, tokenExpire: getNextExpireTime()};
         localStorage.setItem('userData', JSON.stringify({
           ...JSON.parse(localStorage.getItem('userData') as string),
