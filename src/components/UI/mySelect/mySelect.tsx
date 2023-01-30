@@ -1,38 +1,43 @@
-import React, {useState} from 'react';
+import React, {useMemo} from 'react';
+import {useAppSelector} from "../../../hooks/redux";
+import {Select} from "antd";
 import './mySelect.css';
-import { FaCaretDown } from 'react-icons/fa';
 
 type selectProps = {
   onSelect: (group: number) => void;
-  selectedGroup: number;
+  currentGroup: number;
 }
 
-const MySelect: React.FC<selectProps> = ({onSelect, selectedGroup}) => {
-  const [isActive, setIsActive] = useState(false);
-  const options = [1, 2, 3, 4, 5, 6];
+const MySelect: React.FC<selectProps> = ({onSelect, currentGroup}) => {
+  const isAuth = useAppSelector(state => state.userReducer.isAuth);
+
+  const options = useMemo(() => [
+    { value: '1', label: '1 группа слов' },
+    { value: '2', label: '2 группа слов' },
+    { value: '3', label: '3 группа слов' },
+    { value: '4', label: '4 группа слов'},
+    { value: '5', label: '5 группа слов'},
+    { value: '6', label: '6 группа слов'},
+    { value: 'Сложные', label: 'Сложные слова', disabled: !isAuth},
+  ], [isAuth]);
+
+  const handleSelect = (value: string) => {
+    if (!isNaN(+value)) {
+      onSelect(+value);
+    } else {
+      return;
+    }
+  };
+
   return (
-    <div className="dropdown">
-      <div className="dropdown-btn" onClick={() => setIsActive(!isActive)}>
-        {selectedGroup} группа слов
-        <FaCaretDown/>
-      </div>
-      {isActive && (
-        <div className="dropdown-content">
-          {options.map((option) => (
-            <div
-              key={option}
-              onClick={() => {
-                onSelect(option);
-                setIsActive(false);
-              }}
-              className="dropdown-item"
-            >
-              {option} группа слов
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+    <Select
+      className='dropdown'
+      defaultValue={`${currentGroup}`}
+      size='large'
+      style={{ width: 250 }}
+      onSelect={handleSelect}
+      options={options}
+    />
   );
 };
 

@@ -34,9 +34,34 @@ const Glossary: React.FC = () => {
     if (group && page) {
       setGroup(+group);
       setPage(+page);
-      loadWords(+group - 1, +page - 1);
+      loadWords(currentGroup - 1, currentPage - 1);
     }
   }, [group, page]);
+
+  const onSelect = (group: number) => {
+    setGroup(group);
+    navigate(`/glossary/${group}/1`);
+  };
+
+  const onClickFirst = () => {
+    setPage(1);
+    navigate(`/glossary/${currentGroup}/1`);
+  };
+
+  const onClickPrev = () => {
+    setPage(currentPage - 1);
+    navigate(`/glossary/${currentGroup}/${currentPage - 1}`);
+  };
+
+  const onClickNext = () => {
+    setPage(currentPage + 1);
+    navigate(`/glossary/${currentGroup}/${currentPage + 1}`);
+  };
+
+  const onClickLast = () => {
+    setPage(30);
+    navigate(`/glossary/${currentGroup}/30`);
+  };
 
   return (
     <div className='App glossary'>
@@ -51,34 +76,19 @@ const Glossary: React.FC = () => {
       <div className='words__wrapper'>
         {isLoading
           ? <Loader/>
-          : page && group && <div className='word__list'>
-          <MySelect onSelect={(group: number) => {
-            setGroup(group);
-            navigate(`/glossary/${group}/1`);
-          }} selectedGroup={+group}/>
-          <WordList words={words}/>
-          <Pagination
-            page={currentPage}
-            onClickNext={() => {
-              setPage(currentPage + 1);
-              navigate(`/glossary/${currentGroup}/${currentPage + 1}`);
-            }}
-            onClickPrev={() => {
-              setPage(currentPage - 1);
-              navigate(`/glossary/${currentGroup}/${currentPage - 1}`);
-            }}
-            onClickFirst={() => {
-              setPage(1);
-              navigate(`/glossary/${currentGroup}/1`);
-            }}
-            onClickLast={() => {
-              setPage(30);
-              navigate(`/glossary/${currentGroup}/30`);
-            }}
-          />
-        </div>
+          : <div className='word__list'>
+              <MySelect onSelect={onSelect} currentGroup={currentGroup}/>
+              <WordList words={words}/>
+            </div>
         }
       </div>
+      <Pagination
+        page={currentPage}
+        onClickFirst={onClickFirst}
+        onClickPrev={onClickPrev}
+        onClickNext={onClickNext}
+        onClickLast={onClickLast}
+      />
       <Footer/>
     </div>
   );

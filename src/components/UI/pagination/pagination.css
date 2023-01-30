@@ -24,7 +24,13 @@
   transition: all ease-in-out 0.2s;
   background: transparent;
   text-align: center;
-  outline: none;
+  user-select: none;
+}
+
+.arr-wrapper:disabled {
+  color: rgb(205, 205, 205);
+  border-color: rgb(205, 205, 205);
+  pointer-events: none;
 }
 
 .arr-wrapper:hover {
@@ -36,8 +42,3 @@
   background-color: rgb(241, 205, 179);
 }
 
-.disabled-btn {
-  color: rgb(205, 205, 205);
-  border-color: rgb(205, 205, 205);
-  pointer-events: none;
-}
