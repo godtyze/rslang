@@ -69,14 +69,14 @@ const Pagination: React.FC<paginationProps> = ({onClickFirst,
       <MyButton
         className='arr-wrapper'
         visible={true}
-        disabled={isLoading || value === '1'}
+        disabled={isLoading || page === 1}
         onClick={() => {
           setValue('1');
           onClickFirst();
         }}>&lt;&lt;</MyButton>
       <MyButton
         className='arr-wrapper'
-        disabled={isLoading || value === '1'}
+        disabled={isLoading || page === 1}
         visible={true}
         onClick={() => {
           setValue(prev => `${+prev - 1}`)
@@ -102,7 +102,7 @@ const Pagination: React.FC<paginationProps> = ({onClickFirst,
         ></MyInput>}
       <MyButton
         className='arr-wrapper'
-        disabled={isLoading || value === '30'}
+        disabled={isLoading || page === 30}
         visible={true}
         onClick={() => {
           setValue(prev => `${+prev + 1}`)
@@ -110,7 +110,7 @@ const Pagination: React.FC<paginationProps> = ({onClickFirst,
         }}>&gt;</MyButton>
       <MyButton
         className='arr-wrapper'
-        disabled={isLoading || value === '30'}
+        disabled={isLoading || page === 30}
         visible={true}
         onClick={() => {
           setValue('30');
