@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import './glossary.css';
 import Header from "../../components/header/header";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import sprite from '../../assets/svg/sprite.svg';
@@ -12,8 +11,7 @@ import MySelect from "../../components/UI/mySelect/mySelect";
 import Loader from "../../components/Loader/loader";
 import {useAppSelector} from "../../hooks/redux";
 import {useActions} from "../../hooks/useActions";
-
-
+import './glossary.css';
 const Glossary: React.FC = () => {
   const {words, isLoading, currentGroup, currentPage} = useAppSelector(state => state.glossaryReducer);
   const {setPage, setGroup, loadWords} = useActions();
@@ -34,9 +32,11 @@ const Glossary: React.FC = () => {
     if (group && page) {
       setGroup(+group);
       setPage(+page);
-      loadWords(currentGroup - 1, currentPage - 1);
+      loadWords(+group - 1, +page - 1);
     }
+
   }, [group, page]);
+
 
   const onSelect = (group: number) => {
     setGroup(group);
