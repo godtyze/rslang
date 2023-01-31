@@ -12,8 +12,9 @@ import Loader from "../../components/Loader/loader";
 import {useAppSelector} from "../../hooks/redux";
 import {useActions} from "../../hooks/useActions";
 import './glossary.css';
+
 const Glossary: React.FC = () => {
-  const {words, isLoading, currentGroup, currentPage} = useAppSelector(state => state.glossaryReducer);
+  const isLoading = useAppSelector(state => state.glossaryReducer.isLoading);
   const {setPage, setGroup, loadWords} = useActions();
   const {group, page} = useParams<glossaryParams>();
   const navigate = useNavigate();
@@ -37,32 +38,6 @@ const Glossary: React.FC = () => {
 
   }, [group, page]);
 
-
-  const onSelect = (group: number) => {
-    setGroup(group);
-    navigate(`/glossary/${group}/1`);
-  };
-
-  const onClickFirst = () => {
-    setPage(1);
-    navigate(`/glossary/${currentGroup}/1`);
-  };
-
-  const onClickPrev = () => {
-    setPage(currentPage - 1);
-    navigate(`/glossary/${currentGroup}/${currentPage - 1}`);
-  };
-
-  const onClickNext = () => {
-    setPage(currentPage + 1);
-    navigate(`/glossary/${currentGroup}/${currentPage + 1}`);
-  };
-
-  const onClickLast = () => {
-    setPage(30);
-    navigate(`/glossary/${currentGroup}/30`);
-  };
-
   return (
     <div className='App glossary'>
       <Header className='header glossary'>
@@ -77,18 +52,12 @@ const Glossary: React.FC = () => {
         {isLoading
           ? <Loader/>
           : <div className='word__list'>
-              <MySelect onSelect={onSelect} currentGroup={currentGroup}/>
-              <WordList words={words}/>
+              <MySelect/>
+              <WordList/>
             </div>
         }
       </div>
-      <Pagination
-        page={currentPage}
-        onClickFirst={onClickFirst}
-        onClickPrev={onClickPrev}
-        onClickNext={onClickNext}
-        onClickLast={onClickLast}
-      />
+      <Pagination/>
       <Footer/>
     </div>
   );

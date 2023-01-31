@@ -1,15 +1,15 @@
 import React, {useMemo} from 'react';
 import {useAppSelector} from "../../../hooks/redux";
 import {Select} from "antd";
+import {useActions} from "../../../hooks/useActions";
+import {useNavigate} from "react-router-dom";
 import './mySelect.css';
 
-type selectProps = {
-  onSelect: (group: number) => void;
-  currentGroup: number;
-}
-
-const MySelect: React.FC<selectProps> = ({onSelect, currentGroup}) => {
+const MySelect: React.FC = () => {
   const isAuth = useAppSelector(state => state.userReducer.isAuth);
+  const currentGroup = useAppSelector(state => state.glossaryReducer.currentGroup);
+  const {setGroup} = useActions();
+  const navigate = useNavigate();
 
   const options = useMemo(() => [
     { value: '1', label: '1 группа слов' },
@@ -21,9 +21,10 @@ const MySelect: React.FC<selectProps> = ({onSelect, currentGroup}) => {
     { value: 'Сложные', label: 'Сложные слова', disabled: !isAuth},
   ], [isAuth]);
 
-  const handleSelect = (value: string) => {
+  const handleChange = (value: string) => {
     if (!isNaN(+value)) {
-      onSelect(+value);
+      setGroup(+value);
+      navigate(`/glossary/${value}/1`);
     } else {
       return;
     }
@@ -35,7 +36,7 @@ const MySelect: React.FC<selectProps> = ({onSelect, currentGroup}) => {
       defaultValue={`${currentGroup}`}
       size='large'
       style={{ width: 250 }}
-      onSelect={handleSelect}
+      onChange={handleChange}
       options={options}
     />
   );

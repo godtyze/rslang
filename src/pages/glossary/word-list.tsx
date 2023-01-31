@@ -1,13 +1,11 @@
 import React from 'react';
-import {Word} from "../../types/types";
 import WordCard from "../../components/word-card/word-card";
 import './word-list.css';
+import {useAppSelector} from "../../hooks/redux";
 
-type wordListProps = {
-  words: Array<Word>;
-}
+const WordList: React.FC = () => {
+  const words = useAppSelector(state => state.glossaryReducer.words);
 
-const WordList: React.FC<wordListProps> = ({words}) => {
   return (
     <div className='word__cards'>
       {words.map(word =>

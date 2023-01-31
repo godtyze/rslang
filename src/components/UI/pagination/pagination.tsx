@@ -7,31 +7,39 @@ import MyInput from "../input/input";
 import {useActions} from "../../../hooks/useActions";
 import {useAppSelector} from "../../../hooks/redux";
 
-type paginationProps = {
-  onClickNext: () => void;
-  onClickPrev: () => void;
-  onClickFirst: () => void;
-  onClickLast: () => void;
-  page: number;
-}
-
-const Pagination: React.FC<paginationProps> = ({onClickFirst,
-                                                 onClickLast,
-                                                 onClickNext,
-                                                 onClickPrev,
-                                                 page}) => {
-  const isLoading = useAppSelector(state => state.glossaryReducer.isLoading);
+const Pagination: React.FC = () => {
+  const {isLoading, currentGroup, currentPage} = useAppSelector(state => state.glossaryReducer);
   const {setPage} = useActions();
   const { group } = useParams<glossaryParams>();
   const navigate = useNavigate();
 
   const [editMode, setEditMode] = useState<boolean>(false);
-  const [value, setValue] = useState<string>(`${page}`)
+  const [value, setValue] = useState<string>(`${currentPage}`)
 
-  let previousPageValue = page;
+  let previousPageValue = currentPage;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (+e.target.value <= 30 && e.target.value !== '0') setValue(e.target.value);
+  };
+
+  const onClickFirst = () => {
+    setPage(1);
+    navigate(`/glossary/${currentGroup}/1`);
+  };
+
+  const onClickPrev = () => {
+    setPage(currentPage - 1);
+    navigate(`/glossary/${currentGroup}/${currentPage - 1}`);
+  };
+
+  const onClickNext = () => {
+    setPage(currentPage + 1);
+    navigate(`/glossary/${currentGroup}/${currentPage + 1}`);
+  };
+
+  const onClickLast = () => {
+    setPage(30);
+    navigate(`/glossary/${currentGroup}/30`);
   };
 
   const onBlur = () => {
@@ -69,14 +77,14 @@ const Pagination: React.FC<paginationProps> = ({onClickFirst,
       <MyButton
         className='arr-wrapper'
         visible={true}
-        disabled={isLoading || page === 1}
+        disabled={isLoading || currentPage === 1}
         onClick={() => {
           setValue('1');
           onClickFirst();
         }}>&lt;&lt;</MyButton>
       <MyButton
         className='arr-wrapper'
-        disabled={isLoading || page === 1}
+        disabled={isLoading || currentPage === 1}
         visible={true}
         onClick={() => {
           setValue(prev => `${+prev - 1}`)
@@ -87,7 +95,7 @@ const Pagination: React.FC<paginationProps> = ({onClickFirst,
               htmlFor='page'
               onClick={() => setEditMode(true)}
               className='arr-wrapper page'>
-            {page}
+            {currentPage}
           </label>}
       {editMode && <MyInput
         type='text'
@@ -102,20 +110,14 @@ const Pagination: React.FC<paginationProps> = ({onClickFirst,
         ></MyInput>}
       <MyButton
         className='arr-wrapper'
-        disabled={isLoading || page === 30}
+        disabled={isLoading || currentPage === 30}
         visible={true}
-        onClick={() => {
-          setValue(prev => `${+prev + 1}`)
-          onClickNext();
-        }}>&gt;</MyButton>
+        onClick={onClickNext}>&gt;</MyButton>
       <MyButton
         className='arr-wrapper'
-        disabled={isLoading || page === 30}
+        disabled={isLoading || currentPage === 30}
         visible={true}
-        onClick={() => {
-          setValue('30');
-          onClickLast();
-        }}>&gt;&gt;</MyButton>
+        onClick={onClickLast}>&gt;&gt;</MyButton>
     </div>
   );
 };
