@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  max-width: 440px;
+  width: 100%;
+  align-items: center;
+  align-self: center;
+  background: ghostwhite;
+  border-radius: 50px;
+  position: fixed;
+  height: 50px;
+  top: 88%;
+}
+
+@media(max-width: 1000px) {
+  .pagination {
+    width: auto;
+  }
+}

@@ -5,12 +5,12 @@ import sprite from '../../assets/svg/sprite.svg';
 import Navigation from "../../components/navigation";
 import WordList from "./word-list";
 import {glossaryParams} from "../../types/types";
-import Pagination from "../../components/UI/pagination/pagination";
 import Footer from "../../components/footer/footer";
 import MySelect from "../../components/UI/mySelect/mySelect";
 import Loader from "../../components/Loader/loader";
 import {useAppSelector} from "../../hooks/redux";
 import {useActions} from "../../hooks/useActions";
+import MyPagination from "../../components/UI/myPagination/myPagination";
 import './glossary.css';
 
 const Glossary: React.FC = () => {
@@ -57,7 +57,7 @@ const Glossary: React.FC = () => {
             </div>
         }
       </div>
-      <Pagination/>
+      <MyPagination/>
       <Footer/>
     </div>
   );
