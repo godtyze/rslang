@@ -1,13 +1,13 @@
 import React from 'react';
 import WordCard from "../../components/word-card/word-card";
-import './word-list.css';
 import {useAppSelector} from "../../hooks/redux";
+import './word-list.css';
 
 const WordList: React.FC = () => {
   const words = useAppSelector(state => state.glossaryReducer.words);
 
   return (
-    <div className='word__cards'>
+    <div className='word-cards'>
       {words.map(word =>
       <WordCard
         key={word.word}

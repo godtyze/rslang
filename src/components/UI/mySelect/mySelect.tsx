@@ -1,14 +1,13 @@
 import React, {useMemo} from 'react';
 import {useAppSelector} from "../../../hooks/redux";
 import {Select} from "antd";
-import {useActions} from "../../../hooks/useActions";
 import {useNavigate} from "react-router-dom";
 import './mySelect.css';
 
 const MySelect: React.FC = () => {
   const isAuth = useAppSelector(state => state.userReducer.isAuth);
+  const isLoading = useAppSelector(state => state.glossaryReducer.isLoading);
   const currentGroup = useAppSelector(state => state.glossaryReducer.currentGroup);
-  const {setGroup} = useActions();
   const navigate = useNavigate();
 
   const options = useMemo(() => [
@@ -23,7 +22,6 @@ const MySelect: React.FC = () => {
 
   const handleChange = (value: string) => {
     if (!isNaN(+value)) {
-      setGroup(+value);
       navigate(`/glossary/${value}/1`);
     } else {
       return;
@@ -35,7 +33,7 @@ const MySelect: React.FC = () => {
       className='dropdown'
       defaultValue={`${currentGroup}`}
       size='large'
-      style={{ width: 250 }}
+      disabled={isLoading}
       onChange={handleChange}
       options={options}
     />

@@ -14,10 +14,23 @@ import MyPagination from "../../components/UI/myPagination/myPagination";
 import './glossary.css';
 
 const Glossary: React.FC = () => {
-  const isLoading = useAppSelector(state => state.glossaryReducer.isLoading);
+  const {isLoading, currentGroup, currentPage} = useAppSelector(state => state.glossaryReducer);
   const {setPage, setGroup, loadWords} = useActions();
   const {group, page} = useParams<glossaryParams>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (group) {
+      setGroup(+group);
+    }
+  }, [group]);
+
+  useEffect(() => {
+    if (page) {
+      setPage(+page);
+    }
+
+  }, [page]);
 
   useEffect(() => {
     if (isNaN(Number(group)) || isNaN(Number(page))) {
@@ -30,12 +43,7 @@ const Glossary: React.FC = () => {
       return;
     }
 
-    if (group && page) {
-      setGroup(+group);
-      setPage(+page);
-      loadWords(+group - 1, +page - 1);
-    }
-
+    loadWords(currentGroup - 1, currentPage - 1);
   }, [group, page]);
 
   return (
@@ -48,13 +56,11 @@ const Glossary: React.FC = () => {
         </Link>
         <Navigation/>
       </Header>
+      <MySelect/>
       <div className='words__wrapper'>
         {isLoading
           ? <Loader/>
-          : <div className='word__list'>
-              <MySelect/>
-              <WordList/>
-            </div>
+          : <WordList/>
         }
       </div>
       <MyPagination/>

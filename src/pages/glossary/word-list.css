@@ -1,15 +1,17 @@
-.word__cards {
+.word-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   align-self: center;
   justify-content: center;
-  padding: 10px;
+  padding: 0 10px;
   width: 100%;
 }
 
-.word__list {
+.words__wrapper {
+  flex: 1 0 auto;
+  padding: 10px;
   display: flex;
-  flex-direction: column;
-  row-gap: 10px;
+  justify-content: center;
+  min-height: 655px;
 }
