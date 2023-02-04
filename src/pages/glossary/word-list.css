@@ -13,5 +13,8 @@
   padding: 10px;
   display: flex;
   justify-content: center;
+}
+
+.words__wrapper .safari {
   min-height: 655px;
 }

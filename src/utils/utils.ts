@@ -3,7 +3,6 @@ import {expireTime} from "../consts/consts";
 
 const audioPlayer = new Audio();
 
-
 export async function playAudio(url: string): Promise<void> {
   audioPlayer.src = url;
   audioPlayer.load();
@@ -32,4 +31,8 @@ export function getErrorMessage (error: unknown): string {
 
 export function getNextExpireTime(): string {
   return moment().add(expireTime, 'hours').toISOString();
+}
+
+export function isSafari(): boolean {
+  return window.navigator.userAgent.includes('Safari') && !window.navigator.userAgent.includes('Chrome');
 }

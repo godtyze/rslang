@@ -12,6 +12,7 @@ import {useAppSelector} from "../../hooks/redux";
 import {useActions} from "../../hooks/useActions";
 import MyPagination from "../../components/UI/myPagination/myPagination";
 import './glossary.css';
+import {isSafari} from "../../utils/utils";
 
 const Glossary: React.FC = () => {
   const {isLoading, currentGroup, currentPage} = useAppSelector(state => state.glossaryReducer);
@@ -57,7 +58,7 @@ const Glossary: React.FC = () => {
         <Navigation/>
       </Header>
       <MySelect/>
-      <div className='words__wrapper'>
+      <div className={isSafari() ? 'words__wrapper safari' : 'words__wrapper'}>
         {isLoading
           ? <Loader/>
           : <WordList/>
