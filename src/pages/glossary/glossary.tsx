@@ -15,22 +15,21 @@ import './glossary.css';
 import {isSafari} from "../../utils/utils";
 
 const Glossary: React.FC = () => {
-  const {isLoading, currentGroup, currentPage} = useAppSelector(state => state.glossaryReducer);
+  const {isLoading} = useAppSelector(state => state.glossaryReducer);
   const {setPage, setGroup, loadWords} = useActions();
   const {group, page} = useParams<glossaryParams>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (group) {
+    if (group && !isNaN(+group)) {
       setGroup(+group);
     }
   }, [group]);
 
   useEffect(() => {
-    if (page) {
+    if (page && !isNaN(+page)) {
       setPage(+page);
     }
-
   }, [page]);
 
   useEffect(() => {
@@ -44,7 +43,7 @@ const Glossary: React.FC = () => {
       return;
     }
 
-    loadWords(currentGroup - 1, currentPage - 1);
+    if (group && page) loadWords(+group - 1, +page - 1);
   }, [group, page]);
 
   return (

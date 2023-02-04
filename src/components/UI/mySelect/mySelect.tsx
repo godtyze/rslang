@@ -31,7 +31,7 @@ const MySelect: React.FC = () => {
   return (
     <Select
       className='dropdown'
-      defaultValue={`${currentGroup}`}
+      value={`${currentGroup}`}
       size='large'
       disabled={isLoading}
       onChange={handleChange}
