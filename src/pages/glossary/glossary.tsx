@@ -1,0 +1,72 @@
+import React, {useEffect} from 'react';
+import Header from "../../components/header/header";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import sprite from '../../assets/svg/sprite.svg';
+import Navigation from "../../components/navigation";
+import WordList from "./word-list";
+import {glossaryParams} from "../../types/types";
+import Footer from "../../components/footer/footer";
+import MySelect from "../../components/UI/mySelect/mySelect";
+import Loader from "../../components/Loader/loader";
+import {useAppSelector} from "../../hooks/redux";
+import {useActions} from "../../hooks/useActions";
+import MyPagination from "../../components/UI/myPagination/myPagination";
+import './glossary.css';
+import {isSafari} from "../../utils/utils";
+
+const Glossary: React.FC = () => {
+  const {isLoading} = useAppSelector(state => state.glossaryReducer);
+  const {setPage, setGroup, loadWords} = useActions();
+  const {group, page} = useParams<glossaryParams>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (group && !isNaN(+group)) {
+      setGroup(+group);
+    }
+  }, [group]);
+
+  useEffect(() => {
+    if (page && !isNaN(+page)) {
+      setPage(+page);
+    }
+  }, [page]);
+
+  useEffect(() => {
+    if (isNaN(Number(group)) || isNaN(Number(page))) {
+      navigate('/glossary/1/1');
+      return;
+    }
+
+    if (group && page && (+group > 6 || +page < 1 || +page > 30)) {
+      navigate('/glossary/1/1');
+      return;
+    }
+
+    if (group && page) loadWords(+group - 1, +page - 1);
+  }, [group, page]);
+
+  return (
+    <div className='App glossary'>
+      <Header className='header glossary'>
+        <Link to='/'>
+          <svg className='header__link-icon'>
+            <use xlinkHref={`${sprite}#home-icon`}/>
+          </svg>
+        </Link>
+        <Navigation/>
+      </Header>
+      <MySelect/>
+      <div className={isSafari() ? 'words__wrapper safari' : 'words__wrapper'}>
+        {isLoading
+          ? <Loader/>
+          : <WordList/>
+        }
+      </div>
+      <MyPagination/>
+      <Footer/>
+    </div>
+  );
+};
+
+export default Glossary;

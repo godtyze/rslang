@@ -1,0 +1,100 @@
+.btn {
+  display: flex;
+  background-color: beige;
+  outline: none;
+  font-family: cursive;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.login-button {
+  height: 30px;
+  width: 190px;
+}
+
+.enter-button {
+  margin-top: 20px;
+  height: 30px;
+  width: 130px;
+  background-color: inherit;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.register-button {
+  height: 30px;
+  width: 130px;
+  background-color: inherit;
+  transition: 0.3s;
+  border: none;
+  border-radius: unset;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.register-button:hover {
+  color: #ff3e15;
+  box-shadow: 0 2px 0 0 #ff3e15;;
+}
+
+.enter-button:hover {
+  background-color: hsla(0, 0%, 100%, .5);
+  color: #ff3e15;
+}
+
+.form-button {
+  height: 15px;
+  width: 15px;
+  border: none;
+  background-color: inherit;
+  font-size: 20px;
+  font-family: cursive;
+  align-self: flex-end;
+  padding: 10px 15px 0 0;
+}
+
+.form-button:hover {
+  color: #9991c9;
+}
+
+@media (max-width: 800px) {
+  .btn {
+    font-size: 13px;
+  }
+
+  .form-button {
+    left: 80px;
+  }
+}
+
+@media (max-width: 450px) {
+  .login-button {
+    height: 23px;
+    width: 130px;
+  }
+
+  .btn {
+    font-size: 10px;
+
+  }
+
+  .form-button {
+    left: 50px;
+  }
+
+  .enter-button {
+    margin-top: 10px;
+    width: 50px;
+    height: 20px;
+  }
+
+  .register-button {
+    margin-top: 0;
+    width: 50px;
+    height: 20px;
+  }
+}
+

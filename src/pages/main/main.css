@@ -1,0 +1,220 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-size: cover;
+  flex-grow: 1;
+  row-gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-header {
+  padding: 20px 20px 0 20px;
+  display: flex;
+  width: 100%;
+}
+
+.auth-window {
+  height: 280px;
+}
+
+.auth-wrapper {
+  display: flex;
+  height: 200px;
+  width: 200px;
+  align-items: center;
+  border-radius: 15px;
+  border: 3px solid black;
+  background-color: beige;
+  padding-right: 50px;
+}
+
+.games-wrapper {
+  display: flex;
+  column-gap: 20px;
+  height: auto;
+  flex-direction: column;
+}
+
+.all-games {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 230px;
+  width: 180px;
+  border-radius: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  justify-content: center;
+  font-family: cursive;
+  font-size: 30px;
+  transition: 0.3s;
+
+}
+
+.game-wrapper {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9991c9;
+  border: 3px solid black;
+  color: black;
+  cursor: pointer;
+}
+
+.game-wrapper:hover {
+  box-shadow: 5px 5px 5px black;
+}
+
+.authors-button {
+  width: 12px;
+  height: 12px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #513ed3;
+}
+
+.btn-wrap {
+  padding-top: 10px;
+  width: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game:hover {
+  background-color: beige;
+}
+
+.game-wrapper:hover .game {
+  background-color: beige;
+}
+
+.about {
+  max-width: 790px;
+  width: 100%;
+  font-size: 30px;
+  font-family: cursive;
+}
+
+.profile-logo {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-family: cursive;
+  text-align: center;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 50px;
+  transition: 0.3s;
+  margin-left: auto;
+}
+
+.profile-logo:hover {
+  color: bisque;
+  background-color: bisque;
+}
+
+@media (max-width: 800px) {
+  .about {
+    font-size: 25px;
+    padding: 60px 20px 0 20px;
+    text-align: justify;
+  }
+
+  .auth-window {
+    height: 220px;
+  }
+
+  .game {
+    width: 100px;
+    height: 130px;
+    font-size: 15px;
+  }
+
+  .main-image {
+    height: 70px;
+    width: 70px;
+  }
+
+  .profile-logo {
+    align-items: center;
+    height: 70px;
+    width: 70px;
+    font-size: 16px;
+  }
+
+  .games-wrapper {
+    padding-top: 0;
+  }
+
+  .game-image {
+    height: 70px;
+    width: 70px;
+  }
+
+  .sprint-logo {
+    height: 70px;
+    width: 100px;
+  }
+}
+
+@media (max-width: 450px) {
+  .main-image {
+    height: 40px;
+    width: 40px;
+  }
+
+  .profile-logo {
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    font-size: 10px;
+  }
+
+  .about {
+    font-size: 15px;
+  }
+
+  .game {
+    width: 70px;
+    height: 80px;
+    font-size: 11px;
+  }
+
+  .game-image {
+    height: 40px;
+    width: 40px;
+  }
+
+  .sprint-logo {
+    height: 40px;
+    width: 70px;
+  }
+
+  .auth-window {
+    height: 210px;
+  }
+
+  .game-wrapper {
+    border: 1px solid black;
+  }
+}
+
+

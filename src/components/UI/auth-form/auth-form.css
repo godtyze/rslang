@@ -1,0 +1,17 @@
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  height: calc(100vh - 162px);
+  width: 100%;
+  justify-content: center;
+  padding: 8px;
+}
+
+.form-text {
+  font-size: 15px;
+}
+
+.ant-card {
+  max-width: 425px;
+  width: 100%;
+}
