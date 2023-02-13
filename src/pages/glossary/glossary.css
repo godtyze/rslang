@@ -1,5 +1,5 @@
 .App.glossary {
-    background: url('../../assets/jpg/glossary-bg.jpg');
+    background-image: url('../../assets/jpg/glossary-bg.jpg');
     justify-content: initial;
     align-items: initial;
     row-gap: 20px;
